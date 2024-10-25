@@ -9,124 +9,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e3f2f5;
+        body, html {
+            height: 100%;
             margin: 0;
-            padding: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: #333;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background-color: #eeeeee;
         }
 
-        .container {
-            width: 90%;
-            max-width: 380px;
-            padding: 25px;
+        form {
             background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
             text-align: center;
         }
 
         h1 {
-            font-size: 2.5rem;
-            color: #1a1a1a;
-            margin-bottom: 20px;
+            margin-bottom: 3rem;
+            color: #1a75cf;
+            font-size: 2rem;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            color: #f9b20d;
+            font-size: 1.8rem;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
             text-align: left;
         }
 
         label {
-            font-size: 1rem;
+            font-weight: bold;
             color: #555;
-            margin-bottom: 5px;
-            display: inline-block;
         }
 
-        input[type="text"],
-        input[type="password"] {
+        .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding-top: 0.4rem;
+            padding-bottom: 0.4rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             font-size: 1rem;
-            transition: border-color 0.3s;
         }
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #1f45ad;
+        .form-control:focus {
+            border-color: #eeaa0d;
             outline: none;
+            box-shadow: 0px 0px 5px rgba(0, 123, 107, 0.5);
         }
 
-        button {
+        button[type="submit"] {
             width: 100%;
-            padding: 12px;
-            background-color: #1f45ad;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
+            padding: 0.8rem;
             font-size: 1.1rem;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        button:hover {
-            background-color: #f8ee8f;
-            transform: scale(1.02);
-        }
-
-        .alert-danger {
-            color: #721c24;
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            padding: 10px;
-            border-radius: 6px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-        }
-
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .language-selector select {
-            padding: 5px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            background-color: #ffffff;
+            background-color: #0b8e36;
+            color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0b792f;
+        }
+
+        .alert {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+            border-radius: 5px;
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+            color: #f9b20d;
+        }
+
+        .logo {
+            max-width: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control.is-invalid {
+            border-color: red;
         }
     </style>
+
 </head>
 <body>
-    <div class="container">
-        <h1>Inicio de sesión</h1>
-        <form method="post">
-            <div class="form-group">
-                <label for="correo">Correo</label>
-                <input type="text" asp-for="correo" class="form-control" required />
-            </div>
-            <div class="form-group">
-                <label for="Contraseña">Contraseña</label>
-                <input type="password" asp-for="Contraseña" class="form-control" required />
-            </div>
-            <button type="submit">Iniciar sesión</button>
-            @if (!string.IsNullOrEmpty(Model.MensajeError)) {
-                <div class="alert alert-danger">@Model.MensajeError</div>
-            }
-        </form>
-    </div>
+
+    <form method="post">
+        <img src="../static/img/logo.png" alt="Logo" class="logo" >
+        <h2 ><i class="fas fa-user-circle icon"></i>Inicio de sesión</h2>
+        <div class="form-group">
+            <label for="correo">Usuario</label>
+            <input type="text" asp-for="User" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Contraseña">Contraseña</label>
+            <input type="password" asp-for="Password" class="form-control" required />
+        </div>
+        <button type="submit">Iniciar Sesión</button>
+        @if (!string.IsNullOrEmpty(Model.MensajeError)) {
+            <div class="alert">@Model.MensajeError</div>
+        }
+    </form>
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputUser = document.getElementById('User');
+            const inputPassword = document.getElementById('Password');
+            const form = document.querySelector('form');
+
+            inputUser.addEventListener('input', function() {
+                if (inputUser.value === '') {
+                    inputUser.classList.add('is-invalid');
+                } else {
+                    inputUser.classList.remove('is-invalid');
+                }
+            });
+
+            inputPassword.addEventListener('input', function() {
+                if (inputPassword.value.length < 4) {
+                    inputPassword.classList.add('is-invalid');
+                } else {
+                    inputPassword.classList.remove('is-invalid');
+                }
+            });
+
+            form.addEventListener('submit', function(event) {
+                let allValid = true;
+
+                if (inputUser.value === '') {
+                    inputUser.classList.add('is-invalid');
+                    allValid = false;
+                }
+                if (inputPassword.value.length < 4) {
+                    inputPassword.classList.add('is-invalid');
+                    allValid = false;
+                }
+
+                if (!allValid) {
+                    event.preventDefault();
+                } else {
+                    if (inputUser.value == "eyden@gmail.com" && inputPassword.value == "1234") {
+                        return true;
+                    } else if (inputUser.value == "elder@gmail.com" && inputPassword.value == "12345679") {
+                        return true;
+                    } else if (inputUser.value == "brasly@gmail.com" && inputPassword.value == "12345671") {
+                        return true;
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Credenciales Incorrectas',
+                            icon: 'error',
+                            button: 'Aceptar',
+                        });
+                        event.preventDefault();
+                    }
+                }
+            });
+        });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
 </body>
 </html>

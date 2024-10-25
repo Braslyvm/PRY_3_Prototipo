@@ -1,0 +1,26 @@
+﻿@page
+@model PRY_3.Pages.Inventory
+@{
+	ViewData["Title"] = "Inventario";
+}
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewData["Title"]</title>
+	</head>
+    <body>
+        <form method="post" action="/ventas">
+            <button type="submit">Facturación</button>
+        </form>
+
+        <form method="post" action="/Usuarios">
+            <button type="submit">Pago de Servicios</button>
+        </form>
+
+        <form method="post" action="/Reportes">
+            <button type="submit">Gestión de Reportes</button>
+        </form>
+    </body>
+</html>

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\coleg\\OneDrive\\Escritorio\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj": {}
+    "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\PRY_3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\coleg\\OneDrive\\Escritorio\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj": {
+    "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\PRY_3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\coleg\\OneDrive\\Escritorio\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
+        "projectUniqueName": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\PRY_3.csproj",
         "projectName": "PRY_3",
-        "projectPath": "C:\\Users\\coleg\\OneDrive\\Escritorio\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
-        "packagesPath": "C:\\Users\\coleg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\coleg\\OneDrive\\Escritorio\\PRY_3_Prototipo\\PRY_3\\obj\\",
+        "projectPath": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\PRY_3.csproj",
+        "packagesPath": "C:\\Users\\Eyden\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\coleg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Eyden\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -68,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
