@@ -26,7 +26,7 @@ public class inicio_secionModel : PageModel {
         bool resultadoValidacion = Validar_acceso(correo , Contraseña);
 
         if (resultadoValidacion){
-            return RedirectToPage("/Menu");
+            return RedirectToPage("/Men/Menu");
         }
         else{
             ModelState.AddModelError(string.Empty, "Credenciales inválidas. Inténtalo de nuevo.");

@@ -9,39 +9,39 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PRY_3
 build_property.RootNamespace = PRY_3
-build_property.ProjectDir = C:\Users\brasl\Desktop\PRY_3_Prototipo\PRY_3\
+build_property.ProjectDir = C:\Users\coleg\OneDrive\Escritorio\PRY_3_Prototipo\PRY_3\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\brasl\Desktop\PRY_3_Prototipo\PRY_3
+build_property.MSBuildProjectDirectory = C:\Users\coleg\OneDrive\Escritorio\PRY_3_Prototipo\PRY_3
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/Error.cshtml]
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/Index.cshtml]
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/Menu.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVudS5jc2h0bWw=
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Men/Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVuXE1lbnUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/_ViewImports.cshtml]
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/_ViewStart.cshtml]
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/brasl/Desktop/PRY_3_Prototipo/PRY_3/Pages/Shared/_Layout.cshtml]
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-npljf495v9
