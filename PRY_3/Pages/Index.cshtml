@@ -107,7 +107,8 @@ href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
         }
 
         .logo {
-            max-width: 100px;
+            max-width: 200px; 
+            width: 100%; 
             margin-bottom: 1.5rem;
         }
 
@@ -120,7 +121,7 @@ href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
 <body>
 
     <form method="post">
-        <img src="../static/img/logo.png" alt="Logo" class="logo" >
+        <img src="@Url.Content("~/img/logo.png")" alt="Logo" class="logo">
         <h2 ><i class="fas fa-user-circle icon"></i>Inicio de sesión</h2>
         <div class="form-group">
             <label for="correo">Usuario</label>

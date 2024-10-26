@@ -8,27 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Eyden\\.nuget\\packages\\": {}
+    "C:\\Users\\brasl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\PRY_3.csproj",
+      "projectUniqueName": "C:\\Users\\brasl\\Desktop\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
       "projectName": "PRY_3",
-      "projectPath": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\PRY_3.csproj",
-      "packagesPath": "C:\\Users\\Eyden\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\obj\\",
+      "projectPath": "C:\\Users\\brasl\\Desktop\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
+      "packagesPath": "C:\\Users\\brasl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brasl\\Desktop\\PRY_3_Prototipo\\PRY_3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Eyden\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\brasl\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -70,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.306/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
