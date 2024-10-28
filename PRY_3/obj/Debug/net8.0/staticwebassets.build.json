@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1MrOq82Sy6zt97MvXNBvNfqqbqR33IklnTtMGYHCBlc=",
+  "Hash": "WjwPEgHc812+y7zMtC0tWJGgPUcFiAaH2D1IHODTs90=",
   "Source": "PRY_3",
   "BasePath": "_content/PRY_3",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\wwwroot\\css\\styles.css",
+      "SourceId": "PRY_3",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\wwwroot\\",
+      "BasePath": "_content/PRY_3",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
     },
     {
       "Identity": "C:\\Users\\Eyden\\OneDrive - Estudiantes ITCR\\TEC II SEMESTRE 2024\\REQUE\\PY03\\Project\\PRY_3\\wwwroot\\favicon.ico",

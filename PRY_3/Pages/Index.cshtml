@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
 
+    <link rel="stylesheet" href="~/css/IndexStyle.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="js/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
@@ -17,125 +20,72 @@
 href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
 
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: Arial, sans-serif;
-            background-color: #eeeeee;
-        }
 
-        form {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-        }
-
-        h1 {
-            margin-bottom: 3rem;
-            color: #1a75cf;
-            font-size: 2rem;
-        }
-
-        h2 {
-            margin-bottom: 1.5rem;
-            color: #f9b20d;
-            font-size: 1.8rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        label {
-            font-weight: bold;
-            color: #555;
-        }
-
-        .form-control {
-            width: 100%;
-            padding-top: 0.4rem;
-            padding-bottom: 0.4rem;
-            margin-top: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        .form-control:focus {
-            border-color: #eeaa0d;
-            outline: none;
-            box-shadow: 0px 0px 5px rgba(0, 123, 107, 0.5);
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 0.8rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            background-color: #0b8e36;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0b792f;
-        }
-
-        .alert {
-            margin-top: 1rem;
-            padding: 0.75rem;
-            background-color: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
-            border-radius: 5px;
-        }
-
-        .icon {
-            margin-right: 0.5rem;
-            color: #f9b20d;
-        }
-
-        .logo {
-            max-width: 200px; 
-            width: 100%; 
-            margin-bottom: 1.5rem;
-        }
-
-        .form-control.is-invalid {
-            border-color: red;
-        }
     </style>
 
 </head>
 <body>
-
-    <form method="post">
-        <img src="@Url.Content("~/img/logo.png")" alt="Logo" class="logo">
-        <h2 ><i class="fas fa-user-circle icon"></i>Inicio de sesión</h2>
-        <div class="form-group">
-            <label for="correo">Usuario</label>
-            <input type="text" asp-for="User" class="form-control" required />
-        </div>
-        <div class="form-group">
-            <label for="Contraseña">Contraseña</label>
-            <input type="password" asp-for="Password" class="form-control" required />
-        </div>
-        <button type="submit">Iniciar Sesión</button>
-        @if (!string.IsNullOrEmpty(Model.MensajeError)) {
-            <div class="alert">@Model.MensajeError</div>
+    <script>
+        function getRandomColor() {
+            const color1 = { r: 249, g: 178, b: 13 }; // #f9b20d
+            const color2 = { r: 11, g: 142, b: 54 }; // #0b8e36
+            
+            let factor = Math.random();
+            
+            let r = Math.round(color1.r * (1 - factor) + color2.r * factor);
+            let g = Math.round(color1.g * (1 - factor) + color2.g * factor);
+            let b = Math.round(color1.b * (1 - factor) + color2.b * factor);
+            
+            return `rgb(${r}, ${g}, ${b})`;
         }
-    </form>
+
+        function stars() {
+            let e = document.createElement('div');
+            e.setAttribute('class', 'star');
+            const starColor = getRandomColor();
+            e.style.color = starColor;
+            document.body.appendChild(e);
+            e.style.left = Math.random() * innerWidth + 'px';
+
+            let size = Math.random() * 12;
+            let duration = Math.random() * 3;
+
+            e.style.fontSize = 60 + size + 'px';
+            e.style.animationDuration = 2 + duration + 's';
+
+            e.style.textShadow = `text-shadow: 0 0 5px ${color},
+                0 0 20px ${color}, 
+                0 0 50px ${color}; `;
+
+            setTimeout(function(){
+                document.body.removeChild(e);
+            }, 5000);
+        }
+
+        setInterval(function() {
+            stars();
+        }, 100);
+    </script>
+
+    <div class="container">
+        <form method="post">
+            <h4>Mini Super</h4>
+            <img src="@Url.Content("~/img/logo.png")" alt="Logo" class="logo">
+            <h2><i class="fas fa-user-circle icon"></i>Inicio de sesión</h2>
+            <div class="form-group">
+                <label for="correo">Usuario</label>
+                <input type="text" asp-for="User" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label for="Contraseña">Contraseña</label>
+                <input type="password" asp-for="Password" class="form-control" required />
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+            @if (!string.IsNullOrEmpty(Model.MensajeError)) {
+                <div class="alert">@Model.MensajeError</div>
+            }
+        </form>
+    </div>
 
     
     <script>
