@@ -10,253 +10,352 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
-        function toggleUserMenu() {
-            const userMenu = document.getElementById('userMenu');
-            userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function toggleLanguageMenu() {
-            const languageMenu = document.getElementById('languageMenu');
-            languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function changeLanguage(lang) {
-            window.location.href = `/Menu?lang=${lang}`;
-        }
-
-        window.addEventListener('click', function(event) {
-            const userMenu = document.getElementById('userMenu');
-            const languageMenu = document.getElementById('languageMenu');
-            if (!userMenu.contains(event.target) && event.target.className !== 'user-button') {
-                userMenu.style.display = 'none';
-            }
-            if (!languageMenu.contains(event.target) && event.target.className !== 'language-button') {
-                languageMenu.style.display = 'none';
-            }
-        });
-
-        function updateTime() {
-            const now = new Date();
-            const options = { hour: '2-digit', minute: '2-digit', hour12: false };
-            const timeString = now.toLocaleTimeString('es-ES', options);
-            document.getElementById('currentTime').textContent = "Hora: " + timeString;
-        }
-
-        setInterval(updateTime, 1000);
-        updateTime();
-
         function changeContent(section) {
             const mainContent = document.getElementById('mainContent');
             switch (section) {
                 case 'ventas':
                     mainContent.innerHTML = '<h2>Ventas</h2><p>Aquí puedes gestionar las ventas.</p>';
                     break;
-                case 'usuarios':
-                    mainContent.innerHTML = '<h2>Usuarios</h2><p>Aquí puedes gestionar los usuarios.</p>';
+                case 'facturacion':
+                    mainContent.innerHTML = '<h2>Facturación</h2><p>Aquí puedes gestionar la facturación.</p>';
+                    break;
+                case 'servicios':
+                    mainContent.innerHTML = '<h2>Pago de Servicios</h2><p>Aquí puedes gestionar los pagos de servicios.</p>';
                     break;
                 case 'inventario':
-                    mainContent.innerHTML = '<iframe src="../Inventory" style="width: 100%; height: 100%; border: none;"></iframe>';
+                    mainContent.innerHTML = '<h2>Inventario</h2><p>Aquí puedes gestionar el inventario.</p>';
+                    break;
+                case 'productos':
+                    mainContent.innerHTML = '<iframe src="../Products" style="width: 100%; height: 100%; border: none;"></iframe>';
+                    break;
+                case 'lotes':
+                    mainContent.innerHTML = '<h2>Lotes</h2><p>Aquí puedes gestionar los lotes.</p>';
+                    break;
+                case 'descuentos':
+                    mainContent.innerHTML = '<h2>Descuentos</h2><p>Aquí puedes gestionar los descuentos.</p>';
                     break;
                 case 'reportes':
                     mainContent.innerHTML = '<h2>Reportes</h2><p>Aquí puedes gestionar los reportes.</p>';
+                    break;
+                case 'tiquetes':
+                    mainContent.innerHTML = '<h2>Tiquetes</h2><p>Aquí puedes gestionar los tiquetes.</p>';
+                    break;
+                case 'ventaCategoria':
+                    mainContent.innerHTML = '<h2>Venta por Categoría</h2><p>Aquí puedes ver los reportes de ventas por categoría.</p>';
+                    break;
+                case 'usuarios':
+                    mainContent.innerHTML = '<h2>Usuarios</h2><p>Aquí puedes gestionar los usuarios.</p>';
                     break;
                 default:
                     mainContent.innerHTML = '<h2>Bienvenido a la Gestión de Menú</h2><p>Seleccione una opción del menú lateral para comenzar.</p>';
             }
         }
+        function toggleLanguageOptions() {
+            const languageOptions = document.getElementById("languageOptions");
+            languageOptions.style.display = languageOptions.style.display === "none" ? "block" : "none";
+        }
+
+        document.addEventListener("click", function(event) {
+            const languageToggle = document.querySelector(".language-toggle");
+            const languageOptions = document.getElementById("languageOptions");
+
+            if (!languageToggle.contains(event.target)) {
+                languageOptions.style.display = "none";
+            }
+        });
     </script>
-    
+
     <style>
         * {
-            box-sizing: border-box;
-        }
-
-        body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
-
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: #272727;
-            padding: 1rem;
-            width: 100%;
-            color: white;
-        }
-
-        .top-bar img {
-            max-height: 50px;
-        }
-
-        .current-time {
-            font-size: 1.2rem;
-            position: fixed;
-            right: 1rem;
-        }
-
-        .user-button, .language-button {
-            position: fixed;
-            bottom: 1rem;
+            outline: none;
             border: none;
-            border-radius: 15px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            z-index: 1000;
+            text-decoration: none;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
-        .user-button {
-            left: 1rem;
-            background-color: #555;
-            color: white;
+        body {
+            background-color: #efefef;
         }
 
-        .user-button:hover {
-            background-color: #333;
-        }
-
-        .language-button {
-            right: 1rem;
-            background-color: #f9b20d;
-            color: white;
-        }
-
-        .language-button:hover {
-            background-color: #ffc439;
-        }
-
-        .dropdown-menu {
-            display: none;
+        nav {
             position: absolute;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 1rem;
-            z-index: 1001;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            left: 0;
+            background: #fff;
+            width: 90px;
+            overflow: hidden;
+            transition: width 0.2s linear;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
         }
 
-        .dropdown-menu button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            width: 100%;
-            margin-bottom: 0.5rem;
-        }
-
-        .dropdown-menu button:hover {
-            background-color: #c9302c;
-        }
-
-        .content-container {
-            display: flex;
-            height: calc(100% - 70px);
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            width: 200px;
-            padding: 1rem;
-            background-color: #fbfbfb;
-            border-right: 2px solid #c6c6c6;
-            height: 100vh;
-        }
-
-        .button-group form {
-            margin-bottom: 0.5rem;
-        }
-
-        .button-group button {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            text-align: left;
-        }
-
-        .button-group button:hover {
-            background-color: #45a049;
-        }
-
-        /* Contenedor multipropósito */
         .main-content {
             flex-grow: 1;
             padding: 1rem;
+            padding-left: 100px;
             background-color: #f9f9f9;
-            overflow-y: hidden;
-            transition: height 0.3s ease; 
+            transition: height 0.3s ease;
+            height: 100vh;
         }
 
+        .logo {
+            text-align: center;
+            display: flex;
+            transition: all 0.5s ease;
+            margin: 5px 0 0 -2px;
+        }
+
+        .logo img{
+            max-width: 70px; 
+            width: 30%;
+        }
+
+        .logo span{
+            font-weight: bold;
+            margin-top: -6px;
+            padding-left: 1px;
+            font-size: 18px;
+            width: 10px;
+        }
+        a{
+            position: relative;
+            color: rgb(85, 83, 83);
+            font-size: 14px;
+            display: table;
+            width: 300px;
+            padding: 15px;
+        }
+        .fas{
+            color: #f9b20d;
+            position: relative;
+            width: 70px;
+            height: 40px;
+            top: 16px;
+            font-size: 20px;
+            text-align: center;
+
+        }
+
+        .fa-solid{
+            color: #0b8e36;
+            position: relative;
+            width: 30px;
+            top: 3px;
+            font-size: 15px;
+            text-align: center;
+
+        }
+
+        .nav-item{
+            position: relative;
+            top: 12px;
+            margin-left: 10px;
+        }
+
+        a:hover{
+            background: #eee;
+        }
+
+        nav:hover{
+            width: 200px;
+            transition: all 0.5s ease;
+        }
+
+        .logout {
+            position: absolute;   
+            bottom: 0;
+        }
+
+        .sub-menu{
+            display: none;
+            margin-left: 20px;
+            padding-left: 20px;
+            padding-top: 5px;
+            border-left: 1px solid #f6f6f6;
+        }
+
+        .sub-menu li a{
+            padding:  10px 8px;
+            font-size: 12px;
+        }
+
+        .language-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fff;
+            border-radius: 20%;
+            box-shadow: 0 0 10px #00000019;
+        }
+
+        .language-toggle:hover {
+            background-color: #f2f2f2;
+        }
+
+        .language-options {
+            display: none;
+            padding: 5px;
+            font-size: 14px;
+            position: absolute;
+            width: 120px;
+            bottom: 30px;
+            right: 0;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-options label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .language-toggle:hover .language-options {
+            display: block;
+        }
+
+        .fa{
+            position: relative;
+            width: 50px;
+            height: 40px;
+            top: 9px;
+            font-size: 24px;
+            text-align: center;
+            color: #0b8e36;
+
+        }
     </style>
+
+    <script>
+        $(document).ready(function() {
+            $("nav ul li").hover(
+                function() {
+                    $(this).find(".sub-menu").stop(true, true).slideDown(300);
+                },
+                function() {
+                    $(this).find(".sub-menu").stop(true, true).slideUp(300);
+                }
+            );
+        });
+
+        function logout() {
+            window.location.href = "/";
+        }
+    </script>
 </head>
 <body>
-    <div class="top-bar">
-        <img src="@Url.Content("~/img/logo.png")" alt="Logo">
-        <div class="current-time" id="currentTime"></div>
+    <nav>
+        <ul>
+            <li>
+                <a href="#" class="logo">
+                    <img src="@Url.Content("~/img/logo.png")" alt="" class="logo">
+                    <span class="nav-item">Mini Super</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="nav-item">Ventas</span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#" onclick="changeContent('facturacion')">
+                            <i class="fa-solid fa-receipt"></i>
+                            <span class="sub-item">Facturación</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeContent('servicios')">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span class="sub-item">Pago de Servicios</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li>
+                <a href="#">
+                    <i class="fas fa-box"></i>
+                    <span class="nav-item">Inventario</span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#" onclick="changeContent('productos')">
+                            <i class="fa-solid fa-carrot"></i>
+                            <span class="sub-item">Productos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeContent('lotes')">
+                            <i class="fa-solid fa-folder"></i>
+                            <span class="sub-item">Lotes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeContent('descuentos')">
+                            <i class="fa-solid fa-percent"></i>
+                            <span class="sub-item">Descuentos</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-line"></i>
+                    <span class="nav-item">Reportes</span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="#">
+                            <span class="sub-item">Tiquetes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="sub-item">Pago de Servicios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="sub-item">Venta por Categoria</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-users"></i>
+                    <span class="nav-item">Usuarios</span>
+                </a>
+            </li>
+            <li><a href="#" class="logout" onclick="logout()">
+                <i class="fas fa-sign-out-alt" style="color: #6a5624"></i>
+                <span class="nav-item">Salir</span>
+            </a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido multipropósito -->
+    <div class="main-content" id="mainContent">
+        <!-- Contenido inicial -->
+        <h2>Bienvenido al Menú</h2>
+        <p>Seleccione una opción del menú lateral para comenzar.</p>
     </div>
 
-    <div class="content-container">
-        <div class="sidebar">
-            <div class="button-group">
-                <button onclick="changeContent('ventas')"><i class="fas fa-shopping-cart"></i> Ventas</button>
-                <button onclick="changeContent('usuarios')"><i class="fas fa-users"></i> Usuarios</button>
-                <button onclick="changeContent('inventario')"><i class="fas fa-box"></i> Inventario</button>
-                <button onclick="changeContent('reportes')"><i class="fas fa-chart-line"></i> Reportes</button>
-            </div>
-            <button class="user-button" onclick="toggleUserMenu()">
-                <i class="fas fa-user"></i>
-            </button>
-            <div class="dropdown-menu" id="userMenu" style="bottom: 60px; left: 10px; position: fixed;">
-                <form method="get" action="/">
-                    <button type="submit"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
-                </form>
-            </div>
+    <div class="language-toggle">
+        <i class="fa fa-language" onclick="toggleLanguageOptions()"></i>
+        <div id="languageOptions" class="language-options">
+            <label><input type="radio" name="language" value="español"> Español</label>
+            <label><input type="radio" name="language" value="ingles"> Inglés</label>
+            <label><input type="radio" name="language" value="mandarin"> Mandarín</label>
         </div>
-
-        <!-- Contenido multipropósito -->
-        <div class="main-content" id="mainContent">
-            <!-- Contenido inicial -->
-            <h2>Bienvenido al Menú</h2>
-            <p>Seleccione una opción del menú lateral para comenzar.</p>
-        </div>
-
-    </div>
-
-    <button class="language-button" onclick="toggleLanguageMenu()">
-        <i class="fas fa-globe"></i>
-    </button>
-    <div class="dropdown-menu" id="languageMenu" style="bottom: 60px; right: 10px; position: fixed;">
-        <label>
-            <input type="radio" name="language" value="es" onclick="changeLanguage('es')" checked>
-            Español
-        </label>
-        <br>
-        <label>
-            <input type="radio" name="language" value="en" onclick="changeLanguage('en')">
-            Inglés
-        </label>
-        <br>
-        <label>
-            <input type="radio" name="language" value="ch" onclick="changeLanguage('ch')">
-            Mandarín
-        </label>
     </div>
 </body>
 </html>

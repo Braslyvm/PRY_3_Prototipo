@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PRY_3")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd555a98d12ec38053a552ca15e1b2f757fc2908")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3b6af30eb9ae958bdaf07e62a9ba9a63b453b07")]
 [assembly: System.Reflection.AssemblyProductAttribute("PRY_3")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PRY_3")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace PRY_3.Pages
 {
-    public class Inventory : PageModel
+    public class Products : PageModel
     {
         public void OnGet()
         {

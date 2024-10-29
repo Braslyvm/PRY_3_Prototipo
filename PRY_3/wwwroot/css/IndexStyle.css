@@ -5,17 +5,13 @@
     box-sizing: border-box;
 }
 
-img {
-    -webkit-filter: drop-shadow(5px 5px 5px #0000005d);
-    filter: drop-shadow(5px 5px 5px #00000043);
-}
 
 body, html {
     height: 100%;
     margin: 0;
     overflow: hidden;
     font-family: Arial, sans-serif;
-    background-color: #161616;
+    background-color: #ffffff;
     position: relative;
 }
 
@@ -31,7 +27,7 @@ body, html {
 
 
 form {
-    background-color: #242424;
+    background-color: #ffffff;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.248);
@@ -53,7 +49,7 @@ h2 {
 }
 
 h4 {
-    color: #fff;
+    color: #161616;
     margin-bottom: 0.6rem;
 }
 
@@ -64,7 +60,7 @@ h4 {
 
 label {
     font-weight: bold;
-    color: #ffffff;
+    color: #181818;
 }
 
 .form-control {
@@ -73,10 +69,10 @@ label {
     padding-bottom: 0.4rem;
     margin-top: 0.5rem;
     border: 1px solid #ddd;
-    background-color: #212121;
+    background-color: #ffffff;
     border-radius: 5px;
     font-size: 1rem;
-    color: #fff;
+    color: #000000;
 }
 
 .form-control:focus {
@@ -129,14 +125,16 @@ button[type="submit"]:hover {
 /* FONDO ANIMADO */
 .star {
     position: absolute;
-    top: -50px;
-    animation: animate 15s linear forwards;
+    top: -100px;
+    animation: animate 20s linear forwards;
 }
 
 .star::before {
     content: '\e139';
     font-family: FontAwesome;
-
+    text-shadow: 0 0 5px #00000016,
+    0 0 20px #00000016, 
+    0 0 50px #00000016; 
 }
 
 @keyframes animate {

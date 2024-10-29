@@ -1,7 +1,7 @@
 ﻿@page
-@model PRY_3.Pages.Inventory
+@model PRY_3.Pages.Products
 @{
-	ViewData["Title"] = "Inventario";
+	ViewData["Title"] = "Productos";
 }
 <!DOCTYPE html>
 <html lang="es">
@@ -12,15 +12,15 @@
 	</head>
     <body>
         <form method="post" action="/ventas">
-            <button type="submit">Facturación</button>
+            <button type="submit">Agregar Producto</button>
         </form>
 
         <form method="post" action="/Usuarios">
-            <button type="submit">Pago de Servicios</button>
+            <button type="submit">Modificar Producto</button>
         </form>
 
         <form method="post" action="/Reportes">
-            <button type="submit">Gestión de Reportes</button>
+            <button type="submit">Eliminar Producto</button>
         </form>
     </body>
 </html>

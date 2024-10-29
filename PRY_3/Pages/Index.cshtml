@@ -50,21 +50,17 @@ href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
             let size = Math.random() * 12;
             let duration = Math.random() * 3;
 
-            e.style.fontSize = 60 + size + 'px';
-            e.style.animationDuration = 2 + duration + 's';
-
-            e.style.textShadow = `text-shadow: 0 0 5px ${color},
-                0 0 20px ${color}, 
-                0 0 50px ${color}; `;
+            e.style.fontSize = 90 + size + 'px';
+            e.style.animationDuration = 4 + duration + 's';
 
             setTimeout(function(){
                 document.body.removeChild(e);
-            }, 5000);
+            }, 9000);
         }
 
         setInterval(function() {
             stars();
-        }, 100);
+        }, 300);
     </script>
 
     <div class="container">
