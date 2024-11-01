@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\brasl\\Downloads\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
+      "projectUniqueName": "C:\\Users\\brasl\\Desktop\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
       "projectName": "PRY_3",
-      "projectPath": "C:\\Users\\brasl\\Downloads\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
+      "projectPath": "C:\\Users\\brasl\\Desktop\\PRY_3_Prototipo\\PRY_3\\PRY_3.csproj",
       "packagesPath": "C:\\Users\\brasl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\brasl\\Downloads\\PRY_3_Prototipo\\PRY_3\\obj\\",
+      "outputPath": "C:\\Users\\brasl\\Desktop\\PRY_3_Prototipo\\PRY_3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\brasl\\AppData\\Roaming\\NuGet\\NuGet.Config"

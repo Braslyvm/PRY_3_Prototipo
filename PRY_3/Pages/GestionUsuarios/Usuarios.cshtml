@@ -15,7 +15,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #e9f7ef; /* Color de fondo verde claro */
             margin: 0;
             padding: 20px;
         }
@@ -24,26 +24,30 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* Máximo ancho para el contenido */
+            margin: auto; /* Centrar el contenido */
         }
 
         h1 {
-            color: #333;
+            color: #2e7d32; /* Color verde oscuro para el título */
+            text-align: center; /* Centrar el título */
         }
 
         .btn {
-            padding: 12px 15px; /* Aumenté el padding */
+            padding: 12px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
             color: white;
-            font-size: 16px; /* Aumenté el tamaño de fuente */
-            margin-right: 10px; /* Espaciado entre botones */
+            font-size: 16px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #4caf50; /* Verde */
         }
 
         .btn-warning {
@@ -51,7 +55,7 @@
         }
 
         .btn-danger {
-            background-color: #dc3545;
+            background-color: #f44336;
         }
 
         .btn:hover {
@@ -78,18 +82,18 @@
 
         .user-table th,
         .user-table td {
-            padding:10px;
+            padding: 10px;
             border: 1px solid #ccc;
             text-align: left;
         }
 
         .user-table th {
-            background-color: #f8f9fa;
+            background-color: #a5d6a7; /* Verde claro */
             color: #333;
         }
 
         .user-table tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f1f8e9; /* Verde muy claro */
         }
 
         .alert {
@@ -100,7 +104,7 @@
         }
 
         .alert-success {
-            background-color: #d4edda;
+            background-color: #c8e6c9;
             color: #155724;
         }
 
@@ -109,11 +113,10 @@
             color: #721c24;
         }
 
-        .delete-button {
+        .delete-button, .modify-button {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: rgb(20, 20, 20);
             border: none;
             font-weight: 600;
             display: flex;
@@ -122,143 +125,115 @@
             box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
             cursor: pointer;
             transition-duration: 0.3s;
-            overflow: hidden;
             position: relative;
         }
 
-        .delete-svgIcon {
+        .delete-button {
+            background-color: #dc3545; /* Rojo */
+        }
+
+        .modify-button {
+            background-color: #ffc107; /* Amarillo */
+        }
+
+        .delete-button:hover, .modify-button:hover {
+            width: 90px;
+            border-radius: 50px;
+            background-color: #ff5722; 
+        }
+
+        .delete-svgIcon, .modify-svgIcon {
             width: 15px;
             transition-duration: 0.3s;
         }
 
-        .delete-svgIcon path {
+        .delete-svgIcon path, .modify-svgIcon path {
             fill: white;
         }
-
-        .delete-button:hover {
-            width: 90px;
-            border-radius: 50px;
-            transition-duration: 0.3s;
-            background-color: rgb(255, 69, 69);
-            align-items: center;
-        }
-
-        .delete-button:hover .delete-svgIcon {
+        .delete-button:hover .delete-svgIcon, .modify-button:hover .modify-svgIcon {
             width: 20px;
-            transition-duration: 0.3s;
-            transform: translateY(60%);
-            -webkit-transform: rotate(360deg);
-            -moz-transform: rotate(360deg);
-            -o-transform: rotate(360deg);
-            -ms-transform: rotate(360deg);
             transform: rotate(360deg);
         }
 
-        .delete-button::before {
+        .delete-button::before, .modify-button::before {
             display: none;
-            content: "Eliminar";
             color: white;
             transition-duration: 0.3s;
-            font-size: 2px;
+            font-size: 12px;
         }
 
         .delete-button:hover::before {
             display: block;
-            padding-right: 10px;
-            font-size: 13px;
-            opacity: 1;
-            transform: translateY(0px);
-            transition-duration: 0.3s;
-        }
-        .modify-button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgb(20, 20, 20);
-            border: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
-            cursor: pointer;
-            transition-duration: 0.3s;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .modify-svgIcon {
-            width: 15px;
-            transition-duration: 0.3s;
-        }
-
-        .modify-svgIcon path {
-            fill: white;
-        }
-
-        .modify-button:hover {
-            width: 90px;
-            border-radius: 50px;
-            transition-duration: 0.3s;
-            background-color: #ffc107;
-            align-items: center;
-        }
-
-        .modify-button:hover .modify-svgIcon {
-            width: 20px;
-            transition-duration: 0.3s;
-            transform: translateY(60%);
-            -webkit-transform: rotate(360deg);
-            -moz-transform: rotate(360deg);
-            -o-transform: rotate(360deg);
-            -ms-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-
-        .modify-button::before {
-            display: none;
-            content: "Modificar";
-            color: white;
-            transition-duration: 0.3s;
-            font-size: 2px;
+            content: "Eliminar";
         }
 
         .modify-button:hover::before {
             display: block;
-            padding-right: 10px;
-            font-size: 13px;
-            opacity: 1;
-            transform: translateY(0px);
-            transition-duration: 0.3s;
+            content: "Modificar";
+        }
+        /* From Uiverse.io by alexruix */ 
+        .group {
+        display: flex;
+        line-height: 28px;
+        align-items: center;
+        position: relative;
+        max-width: 190px;
         }
 
-        
+        .input2 {
+        height: 40px;
+        line-height: 28px;
+        padding: 0 1rem;
+        width: 300px;
+        padding-left: 2.5rem;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        outline: none;
+        background-color: #D9E8D8;
+        color: #0d0c22;
+        box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
+        transition: .3s ease;
+        }
+
+        .input2::placeholder {
+        color: #777;
+        }
+
+        .icon {
+        position: absolute;
+        left: 1rem;
+        fill: #777;
+        width: 1rem;
+        height: 1rem;
+        }
     </style>
 </head>
 <body>
-
     <div class="content">
         <h1>Gestión de Usuarios</h1>
 
-        <div class="action-buttons">
-            <a href="/RegisterUser" class="btn btn-primary">Registrar Usuario</a>
-            <form method="get" class="search-form">
-                <input type="text" name="searchTerm" placeholder="Buscar usuario..." />
-                <button type="submit">Buscar</button>
-            </form>
+        <div class="group">
+            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                <g>
+                    <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                </g>
+            </svg>
+            <input placeholder="Search" type="search" class="input2" id="searchInput" onkeyup="filterUsers()">
         </div>
+
         <table class="user-table">
             <thead>
                 <tr>
-                    <th>Cedula</th>
+                    <th>Cédula</th>
                     <th>Nombre de Usuario</th>
                     <th>Email</th>
                     <th>Rol</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach (var user in Model.users){
+            <tbody id="userList">
+                @foreach (var user in Model.users)
+                {
                     <tr id="user-@user.Cedula">
                         <td>@user.Cedula</td>
                         <td>@user.UserName</td>
@@ -270,7 +245,7 @@
                                     <path d="M362.3 0c-4.4 0-8.8 1.7-12.1 5l-34.3 34.3 47.6 47.6 34.3-34.3c6.7-6.7 6.7-17.6 0-24.3l-5.7-5.7c-3.3-3.3-7.7-5-12.1-5zm-108.6 34.3L0 384.3V512h127.7l253.7-253.7-34.3-34.3-253.7 253.7H64V384.3l253.7-253.7-34.3-34.3z"></path>
                                 </svg>
                             </button>
-                            <form method="post" asp-page-handler="Borrar">
+                            <form method="post" asp-page-handler="Borrar" style="display:inline;">
                                 <input type="hidden" name="cedula" value="@user.Cedula" />
                                 <button type="submit" class="delete-button" style="margin-top: 10px;">
                                     <svg class="delete-svgIcon" viewBox="0 0 448 512">
@@ -288,5 +263,21 @@
         <div class="alert alert-danger" style="display: none;">Error al agregar usuario.</div>
     </div>
 
+    <script>
+        function filterUsers() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const userList = document.getElementById('userList');
+            const rows = userList.getElementsByTagName('tr');
+            for (let i = 0; i < rows.length; i++) {
+                const userName = rows[i].cells[1].innerText.toLowerCase();
+                if (userName.startsWith(filter)) {
+                    rows[i].style.display = ''; 
+                } else {
+                    rows[i].style.display = 'none'; 
+                }
+            }
+        }
+    </script>
 </body>
-</html>
+
