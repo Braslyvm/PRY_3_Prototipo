@@ -91,3 +91,34 @@ C:\Users\Eyden\OneDrive - Estudiantes ITCR\TEC II SEMESTRE 2024\REQUE\PY03\Proje
 C:\Users\Eyden\OneDrive - Estudiantes ITCR\TEC II SEMESTRE 2024\REQUE\PY03\Project\PRY_3\obj\Debug\net8.0\PRY_3.pdb
 C:\Users\Eyden\OneDrive - Estudiantes ITCR\TEC II SEMESTRE 2024\REQUE\PY03\Project\PRY_3\obj\Debug\net8.0\PRY_3.genruntimeconfig.cache
 C:\Users\Eyden\OneDrive - Estudiantes ITCR\TEC II SEMESTRE 2024\REQUE\PY03\Project\PRY_3\obj\Debug\net8.0\ref\PRY_3.dll
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\appsettings.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\PRY_3.staticwebassets.runtime.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\PRY_3.exe
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\PRY_3.deps.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\PRY_3.runtimeconfig.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\PRY_3.dll
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\PRY_3.pdb
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.AssemblyInfoInputs.cache
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.AssemblyInfo.cs
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.csproj.CoreCompileInputs.cache
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.RazorAssemblyInfo.cache
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.RazorAssemblyInfo.cs
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.sourcelink.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets\msbuild.PRY_3.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets\msbuild.build.PRY_3.props
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.PRY_3.props
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.PRY_3.props
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\scopedcss\bundle\PRY_3.styles.css
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\scopedcss\projectbundle\PRY_3.bundle.scp.css
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.dll
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\refint\PRY_3.dll
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.pdb
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.genruntimeconfig.cache
+C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\ref\PRY_3.dll

@@ -1,0 +1,292 @@
+@page
+@model PRY_3.Pages.UsuariosModel
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .btn {
+            padding: 12px 15px; /* Aumenté el padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            font-size: 16px; /* Aumenté el tamaño de fuente */
+            margin-right: 10px; /* Espaciado entre botones */
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .search-form {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .search-form input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .user-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .user-table th,
+        .user-table td {
+            padding:10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .user-table th {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .user-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .alert {
+            padding: 15px; 
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 16px; 
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .delete-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgb(20, 20, 20);
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+            cursor: pointer;
+            transition-duration: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .delete-svgIcon {
+            width: 15px;
+            transition-duration: 0.3s;
+        }
+
+        .delete-svgIcon path {
+            fill: white;
+        }
+
+        .delete-button:hover {
+            width: 90px;
+            border-radius: 50px;
+            transition-duration: 0.3s;
+            background-color: rgb(255, 69, 69);
+            align-items: center;
+        }
+
+        .delete-button:hover .delete-svgIcon {
+            width: 20px;
+            transition-duration: 0.3s;
+            transform: translateY(60%);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+        .delete-button::before {
+            display: none;
+            content: "Eliminar";
+            color: white;
+            transition-duration: 0.3s;
+            font-size: 2px;
+        }
+
+        .delete-button:hover::before {
+            display: block;
+            padding-right: 10px;
+            font-size: 13px;
+            opacity: 1;
+            transform: translateY(0px);
+            transition-duration: 0.3s;
+        }
+        .modify-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgb(20, 20, 20);
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+            cursor: pointer;
+            transition-duration: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modify-svgIcon {
+            width: 15px;
+            transition-duration: 0.3s;
+        }
+
+        .modify-svgIcon path {
+            fill: white;
+        }
+
+        .modify-button:hover {
+            width: 90px;
+            border-radius: 50px;
+            transition-duration: 0.3s;
+            background-color: #ffc107;
+            align-items: center;
+        }
+
+        .modify-button:hover .modify-svgIcon {
+            width: 20px;
+            transition-duration: 0.3s;
+            transform: translateY(60%);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+
+        .modify-button::before {
+            display: none;
+            content: "Modificar";
+            color: white;
+            transition-duration: 0.3s;
+            font-size: 2px;
+        }
+
+        .modify-button:hover::before {
+            display: block;
+            padding-right: 10px;
+            font-size: 13px;
+            opacity: 1;
+            transform: translateY(0px);
+            transition-duration: 0.3s;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>Gestión de Usuarios</h1>
+
+        <div class="action-buttons">
+            <a href="/RegisterUser" class="btn btn-primary">Registrar Usuario</a>
+            <form method="get" class="search-form">
+                <input type="text" name="searchTerm" placeholder="Buscar usuario..." />
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Cedula</th>
+                    <th>Nombre de Usuario</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.users){
+                    <tr id="user-@user.Cedula">
+                        <td>@user.Cedula</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <button class="modify-button" style="margin-top: 10px;">
+                                <svg class="modify-svgIcon" viewBox="0 0 512 512">
+                                    <path d="M362.3 0c-4.4 0-8.8 1.7-12.1 5l-34.3 34.3 47.6 47.6 34.3-34.3c6.7-6.7 6.7-17.6 0-24.3l-5.7-5.7c-3.3-3.3-7.7-5-12.1-5zm-108.6 34.3L0 384.3V512h127.7l253.7-253.7-34.3-34.3-253.7 253.7H64V384.3l253.7-253.7-34.3-34.3z"></path>
+                                </svg>
+                            </button>
+                            <form method="post" asp-page-handler="Borrar">
+                                <input type="hidden" name="cedula" value="@user.Cedula" />
+                                <button type="submit" class="delete-button" style="margin-top: 10px;">
+                                    <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="alert alert-success" style="display: none;">Usuario agregado con éxito.</div>
+        <div class="alert alert-danger" style="display: none;">Error al agregar usuario.</div>
+    </div>
+
+</body>
+</html>
