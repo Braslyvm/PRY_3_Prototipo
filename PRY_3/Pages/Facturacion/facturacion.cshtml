@@ -1,0 +1,233 @@
+@page
+@model PRY_3.Pages.MenuModel
+@{
+    ViewData["Title"] = "Facturacion";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventana de Facturación de Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9; /* Fondo gris claro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px; /* Ancho máximo */
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff9966; /* Naranja pastel */
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #4CAF50; /* Verde */
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block; /* Para que el label ocupe el ancho completo */
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 2px solid #4CAF50; /* Verde */
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%; /* Ocupa todo el ancho del contenedor */
+            transition: border-color 0.3s; /* Transición suave */
+        }
+
+        input:focus {
+            border-color: #ff9966; /* Cambiar a naranja pastel al enfocar */
+            outline: none; /* Sin borde de enfoque predeterminado */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        button {
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            font-family: "Inter", sans-serif;
+            padding: 1em 1.5em;
+            color: white;
+        }
+
+        .default-btn {
+            background-image: linear-gradient(90.1deg, rgba(84, 212, 228, 1) 0.2%, rgba(68, 36, 164, 1) 99.9%);
+            transition: all 0.3s ease;
+        }
+
+        .hover-btn {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(63deg, rgba(26, 35, 126, 1) 0%, rgba(69, 39, 160, 1) 100%);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            transform: translate(0%, 100%);
+            transition: transform 0.3s ease;
+        }
+
+        button:hover .default-btn {
+            transform: translate(0%, -100%);
+        }
+
+        button:hover .hover-btn {
+            transform: translate(0%, 0%);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%; /* Para que ocupe el ancho completo */
+        }
+
+        li {
+            background-color: #e6ffe6; /* Verde claro */
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #4CAF50; /* Verde */
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li button {
+            background-color: #ff9966; /* Naranja pastel */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px; /* Espaciado entre botones */
+        }
+
+        li button:hover {
+            background-color: #ff704d; /* Naranja más oscuro */
+        }
+
+        #lucky {
+            font-size: 2em;
+            color: #4CAF50; /* Verde */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="lucky">LUCKY</div>
+        <h1>Ventana de Facturación de Productos</h1>
+        <label for="nombre">Nombre de Producto:</label>
+        <input type="text" id="nombre">
+        <div class="button-container">
+            <button class="default-btn" onclick="agregarProducto()">
+                <span class="default-btn">Agregar Producto</span>
+                <span class="hover-btn">Agregar Producto</span>
+            </button>
+            <button class="default-btn" onclick="finalizarFactura()">
+                <span class="default-btn">Finalizar</span>
+                <span class="hover-btn">Finalizar</span>
+            </button>
+        </div>
+        <ul id="factura"></ul>
+    </div>
+    <script>
+        const productos = [
+            { codigo: "001", nombre: "Manzana", tipo: "Fruta", precio: 0.5, cantidad: 1 },
+            { codigo: "002", nombre: "Pan", tipo: "Panadería", precio: 1.0, cantidad: 1 },
+            { codigo: "003", nombre: "Leche", tipo: "Lácteos", precio: 1.2, cantidad: 1 }
+        ];
+        const factura = [];
+
+        function agregarProducto() {
+            const nombre = document.getElementById('nombre').value;
+            const producto = productos.find(p => p.nombre.toLowerCase() === nombre.toLowerCase());
+            if (producto) {
+                factura.push({ ...producto });
+                actualizarLista();
+            } else {
+                alert('Producto no encontrado');
+            }
+            document.getElementById('nombre').value = ''; // Limpiar el campo de entrada
+        }
+
+        function eliminarProducto(nombre) {
+            const index = factura.findIndex(p => p.nombre.toLowerCase() === nombre.toLowerCase());
+            if (index !== -1) {
+                factura.splice(index, 1);
+                actualizarLista();
+            } else {
+                alert('Producto no encontrado en la factura');
+            }
+        }
+
+        function modificarCantidad(nombre, cantidad) {
+            const producto = factura.find(p => p.nombre.toLowerCase() === nombre.toLowerCase());
+            if (producto) {
+                producto.cantidad = cantidad;
+                actualizarLista();
+            } else {
+                alert('Producto no encontrado en la factura');
+            }
+        }
+
+        function finalizarFactura() {
+            const total = factura.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
+            alert(`Total a pagar: $${total.toFixed(2)}`); // Formato con dos decimales
+            factura.length = 0; // Limpiar factura
+            actualizarLista();
+        }
+
+        function actualizarLista() {
+            const lista = document.getElementById('factura');
+            lista.innerHTML = '';
+            factura.forEach(producto => {
+                const li = document.createElement('li');
+                li.textContent = `${producto.nombre} - ${producto.tipo} - $${producto.precio} x ${producto.cantidad}`;
+                
+                const eliminarBtn = document.createElement('button');
+                eliminarBtn.textContent = 'Eliminar';
+                eliminarBtn.onclick = () => eliminarProducto(producto.nombre);
+                
+                const modificarBtn = document.createElement('button');
+                modificarBtn.textContent = 'Modificar Cantidad';
+                modificarBtn.onclick = () => {
+                    const nuevaCantidad = prompt('Ingrese la nueva cantidad:', producto.cantidad);
+                    if (nuevaCantidad) {
+                        modificarCantidad(producto.nombre, parseInt(nuevaCantidad));
+                    }
+                };
+
+                li.appendChild(eliminarBtn);
+                li.appendChild(modificarBtn);
+                lista.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -122,3 +122,6 @@ C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\refint\PRY_3.dll
 C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.pdb
 C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.genruntimeconfig.cache
 C:\Users\brasl\Downloads\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\ref\PRY_3.dll
+C:\Users\coleg\OneDrive\Escritorio\PRY_3_Prototipo\PRY_3\bin\Debug\net8.0\System.Security.Permissions.dll
+C:\Users\coleg\OneDrive\Escritorio\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.csproj.AssemblyReference.cache
+C:\Users\coleg\OneDrive\Escritorio\PRY_3_Prototipo\PRY_3\obj\Debug\net8.0\PRY_3.csproj.Up2Date
