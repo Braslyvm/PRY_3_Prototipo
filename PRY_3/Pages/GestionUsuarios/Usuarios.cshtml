@@ -22,26 +22,26 @@
 
         .content {
             background: white;
-            padding: 20px;
+            padding: 30px; /* Aumentar el padding */
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 800px; /* Máximo ancho para el contenido */
             margin: auto; /* Centrar el contenido */
         }
 
         h1 {
             color: #2e7d32; /* Color verde oscuro para el título */
             text-align: center; /* Centrar el título */
+            font-size: 2.5em; /* Aumentar el tamaño de la fuente */
         }
 
         .btn {
-            padding: 12px 15px;
+            padding: 15px 20px; /* Aumentar el padding */
             border: none;
-            border-radius: 5px;
+            border-radius: 8px; /* Aumentar el radio de borde */
             cursor: pointer;
             text-decoration: none;
             color: white;
-            font-size: 16px;
+            font-size: 18px; /* Aumentar el tamaño de la fuente */
             margin-right: 10px;
             transition: background-color 0.3s;
         }
@@ -68,10 +68,10 @@
         }
 
         .search-form input[type="text"] {
-            padding: 8px;
+            padding: 12px; /* Aumentar el padding */
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 14px;
+            font-size: 16px; /* Aumentar el tamaño de la fuente */
         }
 
         .user-table {
@@ -82,9 +82,10 @@
 
         .user-table th,
         .user-table td {
-            padding: 10px;
+            padding: 15px; /* Aumentar el padding */
             border: 1px solid #ccc;
             text-align: left;
+            font-size: 16px; /* Aumentar el tamaño de la fuente */
         }
 
         .user-table th {
@@ -93,19 +94,19 @@
         }
 
         .user-table tr:nth-child(even) {
-            background-color: #f1f8e9; /* Verde muy claro */
+            background-color: #ffffff; /* Verde muy claro */
         }
 
         .alert {
-            padding: 15px; 
+            padding: 20px; 
             margin-top: 20px;
-            border-radius: 5px;
-            font-size: 16px; 
+            border-radius: 8px; /* Aumentar el radio de borde */
+            font-size: 18px; /* Aumentar el tamaño de la fuente */
         }
 
         .alert-success {
             background-color: #c8e6c9;
-            color: #155724;
+            color: #ffffff;
         }
 
         .alert-danger {
@@ -114,8 +115,8 @@
         }
 
         .delete-button, .modify-button {
-            width: 40px;
-            height: 40px;
+            width: 50px; /* Aumentar el ancho */
+            height: 50px; /* Aumentar la altura */
             border-radius: 50%;
             border: none;
             font-weight: 600;
@@ -137,21 +138,22 @@
         }
 
         .delete-button:hover, .modify-button:hover {
-            width: 90px;
+            width: 120px; /* Aumentar el ancho al pasar el mouse */
             border-radius: 50px;
             background-color: #ff5722; 
         }
 
         .delete-svgIcon, .modify-svgIcon {
-            width: 15px;
+            width: 20px; /* Aumentar el tamaño de los íconos */
             transition-duration: 0.3s;
         }
 
         .delete-svgIcon path, .modify-svgIcon path {
             fill: white;
         }
+
         .delete-button:hover .delete-svgIcon, .modify-button:hover .modify-svgIcon {
-            width: 20px;
+            width: 25px; /* Aumentar el tamaño de los íconos al pasar el mouse */
             transform: rotate(360deg);
         }
 
@@ -171,87 +173,322 @@
             display: block;
             content: "Modificar";
         }
-        /* From Uiverse.io by alexruix */ 
+
+        /* Desde Uiverse.io por alexruix */
         .group {
-        display: flex;
-        line-height: 28px;
-        align-items: center;
-        position: relative;
-        max-width: 190px;
+            display: flex;
+            line-height: 28px;
+            align-items: center;
+            position: relative;
+            max-width: 190px;
         }
 
         .input2 {
-        height: 40px;
-        line-height: 28px;
-        padding: 0 1rem;
-        width: 300px;
-        padding-left: 2.5rem;
-        border: 2px solid transparent;
-        border-radius: 8px;
-        outline: none;
-        background-color: #D9E8D8;
-        color: #0d0c22;
-        box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
-        transition: .3s ease;
+            height: 50px; /* Aumentar la altura */
+            line-height: 28px;
+            padding: 0 1rem;
+            width: 700px;
+            padding-left: 2.5rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            outline: none;
+            background-color: #c8e6c9;
+            color: #0d0c22;
+            box-shadow: 0 0 5px #C1D9BF, 0 0 0 10px #f5f5f5eb;
+            transition: .3s ease;
         }
 
         .input2::placeholder {
-        color: #777;
+            color: #777;
         }
 
         .icon {
-        position: absolute;
-        left: 1rem;
-        fill: #777;
-        width: 1rem;
-        height: 1rem;
+            position: absolute;
+            left: 1rem;
+            fill: #777;
+            width: 1rem;
+            height: 1rem;
         }
+
+        .custom-table {
+            background-color: #e9f7ef;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .custom-row {
+            background-color: #e9f7ef;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Estilos del formulario */
+        .custom-form {
+            background-color: #ffffff;
+            padding: 30px; /* Aumentar el padding */
+            border-radius: 8px; /* Aumentar el radio de borde */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+        }
+
+        .custom-label {
+            display: block;
+            margin-bottom: 10px; /* Aumentar el margen */
+            font-weight: bold;
+            color: #333;
+            font-size: 16px; /* Tamaño de la fuente */
+        }
+
+        /* Estilos de entrada */
+        .custom-input-text,
+        .custom-input-email {
+            width: calc(100% - 20px); /* Ajuste del ancho */
+            padding: 15px; /* Aumentar el padding */
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px; /* Aumentar el tamaño de la fuente */
+            transition: border-color 0.3s;
+        }
+
+        .custom-input-text:focus,
+        .custom-input-email:focus {
+            border-color: #007bff; /* Cambio de color en foco */
+            outline: none;
+        }
+
+        .custom-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 20px; /* Aumentar el padding */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Aumentar el tamaño de la fuente */
+            transition: background-color 0.3s;
+        }
+
+        .custom-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilo para el botón de cancelar */
+        .custom-button-cancel {
+            background-color: #dc3545;
+            margin-left: 10px;
+        }
+
+        .custom-button-cancel:hover {
+            background-color: #c82333;
+        }
+
+        .role-label {
+            display: block; /* Asegura que el label ocupe toda la línea */
+            font-weight: bold; /* Hace que el texto del label sea más destacado */
+            margin-bottom: 5px; /* Espacio entre el label y el select */
+            color: #333; /* Color del texto */
+            font-size: 16px; /* Tamaño de la fuente */
+        }
+
+        /* Estilo del select para el rol */
+        .role-select {
+            width: 100%; /* Asegura que el select ocupe todo el ancho disponible */
+            max-width: 400px; /* Ancho máximo para mantener la consistencia */
+            padding: 15px; /* Aumentar el padding */
+            border: 1px solid #ccc; /* Borde gris claro */
+            border-radius: 4px; /* Bordes redondeados */
+            font-size: 16px; /* Aumentar el tamaño de la fuente */
+            transition: border-color 0.3s; /* Transición suave para el borde */
+        }
+
+        /* Estilo del select al recibir foco */
+        .role-select:focus {
+            border-color: #66afe9; /* Cambia el color del borde al recibir foco */
+            outline: none; /* Elimina el contorno por defecto */
+        }
+        .form-group-horizontal {
+            display: flex;
+            align-items: center; /* Alinea verticalmente los elementos */
+            gap: 15px; /* Espacio entre los elementos */
+        }
+
+        .form-group-horizontal div {
+            margin-right: 10px; /* Espacio a la derecha de cada grupo de elementos */
+        }
+
+        .custom-label, .role-label {
+            margin-right: 5px; /* Espacio entre la etiqueta y el campo */
+        }
+        /* Desde Uiverse.io por ernestnash */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(5, 5, 5);
+    border: 3px solid transparent;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    font-family: inherit;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transform: translateX(-100%);
+    transition: all .3s;
+    z-index: -1;
+}
+
+
+.btn.guardar {
+    border-color: rgb(255, 193, 7); /* Amarillo */
+}
+
+.btn.guardar::before {
+    background-color: rgb(255, 193, 7); /* Amarillo */
+}
+
+.btn.guardar:hover::before {
+    transform: translateX(0);
+}
+
+
+.btn.cancelar {
+    border-color: rgb(252, 70, 100); /* Rojo */
+}
+
+.btn.cancelar::before {
+    background-color: rgb(252, 70, 100); /* Rojo */
+}
+
+.btn.cancelar:hover::before {
+    transform: translateX(0);
+}
+
+
+
     </style>
 </head>
 <body>
     <div class="content">
         <h1>Gestión de Usuarios</h1>
-
         <div class="group">
-            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+            <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24">
                 <g>
                     <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
                 </g>
             </svg>
-            <input placeholder="Search" type="search" class="input2" id="searchInput" onkeyup="filterUsers()">
+            <input placeholder="Buscar por nombre" type="search" class="input2" id="searchInput" onkeyup="filterUsers()">
         </div>
+
 
         <table class="user-table">
             <thead>
                 <tr>
                     <th>Cédula</th>
-                    <th>Nombre de Usuario</th>
-                    <th>Email</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Sexo</th>
+                    <th>Lugar de recidencia</th>
                     <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Correo Electronico</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
+
             <tbody id="userList">
-                @foreach (var user in Model.users)
-                {
+                @foreach (var user in Model.users){
                     <tr id="user-@user.Cedula">
                         <td>@user.Cedula</td>
                         <td>@user.UserName</td>
-                        <td>@user.Email</td>
+                        <td>@user.Apellido_1</td>
+                        <td>@user.Apellido_2</td>
+                        <td>@user.Sexo</td>
+                        <td>@user.Lugar_Recidencia</td>
                         <td>@user.Role</td>
+                        <td>@user.correo</td>
+                        <td>@user.Estado</td>
                         <td>
                             <button class="modify-button" style="margin-top: 10px;">
                                 <svg class="modify-svgIcon" viewBox="0 0 512 512">
                                     <path d="M362.3 0c-4.4 0-8.8 1.7-12.1 5l-34.3 34.3 47.6 47.6 34.3-34.3c6.7-6.7 6.7-17.6 0-24.3l-5.7-5.7c-3.3-3.3-7.7-5-12.1-5zm-108.6 34.3L0 384.3V512h127.7l253.7-253.7-34.3-34.3-253.7 253.7H64V384.3l253.7-253.7-34.3-34.3z"></path>
                                 </svg>
                             </button>
-                            <form method="post" asp-page-handler="Borrar" style="display:inline;">
+                            <form id="deleteForm" method="post" asp-page-handler="Borrar" style="display:inline;" onsubmit="return confirmDelete();">
                                 <input type="hidden" name="cedula" value="@user.Cedula" />
                                 <button type="submit" class="delete-button" style="margin-top: 10px;">
                                     <svg class="delete-svgIcon" viewBox="0 0 448 512">
                                         <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
                                     </svg>
                                 </button>
+                            </form>
+                        </td>
+                    </tr>      
+                    <tr id="editForm-@user.Cedula" style="display: none;">
+                        <td colspan="10">
+                            <form method="post" asp-page-handler="Modificar">
+                                <input type="hidden" name="Cedula" value="@user.Cedula" />
+                                <div>
+                                    <label class="custom-label">Nombre:</label>
+                                    <input type="text" name="UserName" value="@user.UserName" class="custom-input-text" />
+                                </div>
+                                <div>
+                                    <label class="custom-label">Apellido 1:</label>
+                                    <input type="text" name="Apellido_1" value="@user.Apellido_1" class="custom-input-text" />
+                                </div>
+                                <div>
+                                    <label class="custom-label">Apellido 2:</label>
+                                    <input type="text" name="Apellido_2" value="@user.Apellido_2" class="custom-input-text" />
+                                </div>
+                                <div>
+                                    <label class="custom-label">Residencia:</label>
+                                    <input type="text" name="Lugar_Recidencia" value="@user.Lugar_Recidencia" class="custom-input-text" />
+                                </div>
+                                <div>
+                                    <label class="custom-label">Correo Electrónico:</label>
+                                    <input type="text" name="correo" value="@user.correo" class="custom-input-text" />
+                                </div>
+                                <div class="form-group-horizontal">
+                                    <div>
+                                        <label class="role-label">Sexo:</label>
+                                        @Html.DropDownList("Sexo", new SelectList(new List<SelectListItem>
+                                        {
+                                            new SelectListItem { Value = "Femenino", Text = "Femenino" },
+                                            new SelectListItem { Value = "Masculino", Text = "Masculino" }
+                                        }, "Value", "Text", user.Sexo), new { @class = "role-select" })
+                                    </div>
+
+                                    <div>
+                                        <label class="role-label">Rol:</label>
+                                        @Html.DropDownList("Rol", new SelectList(new List<SelectListItem>
+                                        {
+                                            new SelectListItem { Value = "Usuario", Text = "Usuario" },
+                                            new SelectListItem { Value = "Administrador", Text = "Administrador" }
+                                        }, "Value", "Text", user.Role), new { @class = "role-select" })
+                                    </div>
+
+                                    <div>
+                                        <label class="role-label">Estado:</label>
+                                        @Html.DropDownList("Estado", new SelectList(new List<SelectListItem>
+                                        {
+                                            new SelectListItem { Value = "Activo", Text = "Activo" },
+                                            new SelectListItem { Value = "Inactivo", Text = "Inactivo" }
+                                        }, "Value", "Text", user.Estado), new { @class = "role-select" })
+                                    </div>
+                                </div>
+                                <button type="button" class="btn guardar" style="float: right; margin-top: 10px;" onclick="confirmarModificacion(event)">Guardar Cambios</button>
+                                <button type="button" class="btn cancelar" style="float: right; margin-top: 10px;" onclick="toggleEditForm('@user.Cedula')">Cancelar</button>
                             </form>
                         </td>
                     </tr>
@@ -264,20 +501,71 @@
     </div>
 
     <script>
-        function filterUsers() {
+       function confirmarModificacion(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Guardar cambios',
+                text: '¿Está seguro de que desea guardar los cambios?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sí, guardar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var formulario = event.target.closest('form');
+                    if (formulario) {
+                        formulario.submit(); 
+                    } else {
+                        console.error("No se encontró el formulario.");
+                    }
+                } else {
+                    console.log("Modificación cancelada.");
+                }
+            });
+        }
+         function confirmDelete() {
+            event.preventDefault(); 
+            Swal.fire({
+                title: 'Usuario Eliminado',
+                text: 'El usuario ha sido eliminado exitosamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+        function toggleEditForm(cedula) {
+            const form = document.getElementById(`editForm-${cedula}`);
+            form.style.display = form.style.display === 'none' ? '' : 'none';
+        }
+       function filterUsers() {
             const input = document.getElementById('searchInput');
             const filter = input.value.toLowerCase();
             const userList = document.getElementById('userList');
             const rows = userList.getElementsByTagName('tr');
+
             for (let i = 0; i < rows.length; i++) {
-                const userName = rows[i].cells[1].innerText.toLowerCase();
-                if (userName.startsWith(filter)) {
-                    rows[i].style.display = ''; 
+                if (i % 2 === 0) { 
+                    const userName = rows[i].cells[1].innerText.toLowerCase();
+                    if (userName.includes(filter)) {
+                        rows[i].style.display = ''; 
+                    } else {
+                        rows[i].style.display = 'none'; 
+                    }
                 } else {
                     rows[i].style.display = 'none'; 
                 }
             }
         }
+        document.querySelectorAll('.modify-button').forEach(button => {
+            button.addEventListener('click', function() {
+            const userCedula = this.closest('tr').id.split('-')[1];
+            const editRow = document.getElementById(`editForm-${userCedula}`);
+            editRow.style.display = editRow.style.display === 'none' ? '' : 'none';
+            });
+        });
     </script>
 </body>
 

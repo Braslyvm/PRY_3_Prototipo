@@ -1,55 +1,28 @@
-3,user2,user2@example.com,User
-5,user4,user4@example.com,User
-6,user5,user5@example.com,User
-8,user7,user7@example.com,User
-9,user8,user8@example.com,User
-11,user10,user10@example.com,User
-12,user11,user11@example.com,User
-13,user12,user12@example.com,User
-14,user13,user13@example.com,User
-15,user14,user14@example.com,User
-16,user15,user15@example.com,User
-17,user16,user16@example.com,User
-18,user17,user17@example.com,User
-19,user18,user18@example.com,User
-20,user19,user19@example.com,User
-21,user20,user20@example.com,User
-22,user21,user21@example.com,User
-23,user22,user22@example.com,User
-24,user23,user23@example.com,User
-25,user24,user24@example.com,User
-26,user25,user25@example.com,User
-27,user26,user26@example.com,User
-28,user27,user27@example.com,User
-29,user28,user28@example.com,User
-30,user29,user29@example.com,User
-31,user30,user30@example.com,User
-32,user31,user31@example.com,User
-33,user32,user32@example.com,User
-34,user33,user33@example.com,User
-35,user34,user34@example.com,User
-36,user35,user35@example.com,User
-37,user36,user36@example.com,User
-38,user37,user37@example.com,User
-39,user38,user38@example.com,User
-40,user39,user39@example.com,User
-41,user40,user40@example.com,User
-42,user41,user41@example.com,User
-43,user42,user42@example.com,User
-44,user43,user43@example.com,User
-45,user44,user44@example.com,User
-46,user45,user45@example.com,User
-47,user46,user46@example.com,User
-48,user47,user47@example.com,User
-49,user48,user48@example.com,User
-50,user49,user49@example.com,User
-51,user50,user50@example.com,User
-52,user51,user51@example.com,User
-53,user52,user52@example.com,User
-54,user53,user53@example.com,User
-55,user54,user54@example.com,User
-56,user55,user55@example.com,User
-57,user56,user56@example.com,User
-58,user57,user57@example.com,User
-59,user58,user58@example.com,User
-60,user59,user59@example.com,User
+369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
+456987123,Carolina,Núñez,Valverde,Femenino,Cartago,Usuario,Inactivo,carolina.nunez@gmail.com
+321987654,Sergio,Castillo,Rodríguez,Masculino,Alajuela,Administrador,Activo,sergio.castillo@gmail.com
+147369852,Verónica,Aguilar,Monge,Femenino,San José,Usuario,Activo,veronica.aguilar@gmail.com
+963258741,Javier,Madrigal,Sotela,Masculino,Heredia,Administrador,Inactivo,javier.madrigal@gmail.com
+789456123,Laura,Acosta,Vargas,Femenino,Cartago,Usuario,Activo,laura.acosta@gmail.com
+258741963,Diego,Cordero,Salazar,Masculino,Alajuela,Administrador,Activo,diego.cordero@gmail.com
+654789321,Vanessa,Obando,Quirós,Femenino,San José,Usuario,Inactivo,vanessa.obando@gmail.com
+789321654,Camila,Pérez,Mora,Femenino,Cartago,Usuario,Activo,camila.perez@gmail.com
+147852369,Rafael,Gutiérrez,Jiménez,Masculino,Alajuela,Administrador,Inactivo,rafael.gutierrez@gmail.com
+963741258,Sonia,Solano,Benavides,Femenino,San José,Usuario,Activo,sonia.solano@gmail.com
+369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
+654321987,José,Salazar,Luna,Masculino,Alajuela,Administrador,Activo,jose.salazar@gmail.com
+789654123,Liliana,Sánchez,Martínez,Femenino,San José,Usuario,Activo,liliana.sanchez@gmail.com
+123987456,Félix,Marín,Chaves,Masculino,Heredia,Administrador,Inactivo,felix.marin@gmail.com
+456123789,Sofía,Cruz,Arroyo,Femenino,Cartago,Usuario,Activo,sofia.cruz@gmail.com
+321789654,Octavio,Rivera,Torres,Masculino,Alajuela,Administrador,Activo,octavio.rivera@gmail.com
+147258963,Jessica,Torres,Soto,Femenino,San José,Usuario,Inactivo,jessica.torres@gmail.com
+963258741,Christian,Valenzuela,Pérez,Masculino,Heredia,Administrador,Activo,christian.valenzuela@gmail.com
+369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
+654789321,Silvia,Rodríguez,Salas,Femenino,San José,Usuario,Activo,silvia.rodriguez@gmail.com
+789321654,Natalia,Cantillo,Casado,Femenino,Cartago,Usuario,Activo,natalia.cantillo@gmail.com
+147852963,Luis,Chacón,Sierra,Masculino,Alajuela,Administrador,Inactivo,luis.chacon@gmail.com
+963741852,María,Jara,Gómez,Femenino,San José,Usuario,Activo,maria.jara@gmail.com
+369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
+789456123,Teresa,Alonso,Sandoval,Femenino,San José,Usuario,Activo,teresa.alonso@gmail.com
+963258741,Alicia,Vargas,Pérez,Femenino,Cartago,Usuario,Activo,alicia.vargas@gmail.com
+789123654,Marco,Acuña,Cordero,Masculino,Alajuela,Administrador,Activo,marco.acuna@gmail.com
