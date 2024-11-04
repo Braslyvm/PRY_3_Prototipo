@@ -1,0 +1,98 @@
+@page
+@model PRY_3.Pages.TicketModel
+@{
+    ViewData["Title"] = "Ticket de Compra";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket de Compra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .ticket {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .producto {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+
+        .total {
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <h1>Ticket de Compra</h1>
+
+        @if (Model.Productos.Count == 0)
+        {
+            <p>No hay productos en la factura.</p>
+        }
+        else
+        {
+            foreach (var producto in Model.Productos)
+            {
+                <div class="producto">
+                    <span>@producto.Nombre</span>
+                    <span>$@producto.Precio x @producto.Cantidad</span>
+                </div>
+            }
+
+            <div class="total">
+                Total: $@Model.Total
+            </div>
+        }
+
+        <div class="btn-container">
+            <button onclick="window.print()">Imprimir</button>
+            <button onclick="window.location.href='/Facturacion/facturacion'">Regresar</button>
+        </div>
+    </div>
+</body>
+</html>

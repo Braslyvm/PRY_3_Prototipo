@@ -231,18 +231,54 @@
             { codigo: "003", nombre: "Leche", tipo: "Lácteos", precio: 1.2, cantidad: 1 }
         ];
         const factura = [];
+        document.getElementById('nombre').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        agregarProducto();
+    }
+});
 
+        
         function agregarProducto() {
-            const nombre = document.getElementById('nombre').value;
-            const producto = productos.find(p => p.nombre.toLowerCase() === nombre.toLowerCase());
-            if (producto) {
-                factura.push({ ...producto });
-                actualizarLista();
-            } else {
-                alert('Producto no encontrado');
-            }
-            document.getElementById('nombre').value = ''; 
-        }
+    const nombre = document.getElementById('nombre').value;
+    const producto = productos.find(p => p.nombre.toLowerCase() === nombre.toLowerCase() || p.codigo === nombre);
+
+    // Verifica si el producto no fue encontrado
+    if (!producto) {
+        alert('Producto no encontrado');
+        document.getElementById('nombre').value = ''; // Limpia el campo de entrada
+        return; // Sale de la función si el producto no se encuentra
+    }
+
+    const productoEnFactura = factura.find(item => item.codigo === producto.codigo);
+    if (productoEnFactura) {
+        modificarCantidad(producto.nombre, productoEnFactura.cantidad + 1);
+    } else {
+        factura.push({ ...producto });
+    }
+
+    actualizarLista();
+    document.getElementById('nombre').value = ''; // Limpia el campo de entrada
+}
+
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
         function eliminarProducto(nombre) {
             const index = factura.findIndex(p => p.nombre.toLowerCase() === nombre.toLowerCase());
@@ -265,11 +301,13 @@
         }
 
         function finalizarFactura() {
-            const total = factura.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
-            alert(`Total a pagar: $${total.toFixed(2)}`); 
-            factura.length = 0; // Limpiar factura
-            actualizarLista();
-        }
+        // Calcula el total de la factura
+        //const total = factura.reduce((sum, producto) => sum + producto.precio * producto.cantidad, 0);
+        
+        // Redirigir a la página del ticket y pasar los datos como una cadena JSON
+        window.location.href = `/Ticket?productos=${encodeURIComponent(JSON.stringify(factura))}`;
+    }
+
 
         function actualizarLista() {
             const lista = document.getElementById('factura');
