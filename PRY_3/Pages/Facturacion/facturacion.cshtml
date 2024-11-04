@@ -262,7 +262,7 @@
             <h2>Ticket de Factura</h2>
             <div id="ticketContent"></div>
             <h3 id="ticketTotal"></h3> 
-            <button class="close-btn" onclick="cerrarModal()">Siguiente.</button><!-- Redirigir aa interfaz pafgo -->
+            <button class="close-btn" onclick="realizarPago()">Siguiente.</button>
         </div>
     </div>
 
@@ -320,8 +320,16 @@
                 alert('Producto no encontrado en la factura');
             }
         }
+        function realizarPago() {
+
+
+        window.location.href = `/Pagos/Pago?montoTotal=${calcularTotal().toFixed(2)}`;
+}
+
 
         function finalizarFactura() {
+                 
+
             // Muestra el contenido de la factura en el modal
             const ticketContent = document.getElementById('ticketContent');
             ticketContent.innerHTML = factura.map(producto => `${producto.nombre}  - ₡${producto.precio} x ${producto.cantidad}`).join('<br>');
@@ -329,13 +337,17 @@
             // Muestra el total en el modal
             const ticketTotal = document.getElementById('ticketTotal');
             ticketTotal.innerHTML = `Total: ₡${calcularTotal().toFixed(2)}`;
+            
 
             // Muestra el modal
             document.getElementById('ticketModal').style.display = 'flex';
+       
         }
 
         function cerrarModal() {
+
             document.getElementById('ticketModal').style.display = 'none';
+      
             window.location.href = '/Facturacion/facturacion';
         }
 
@@ -377,9 +389,11 @@
         function calcularTotal() {
             return factura.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
         }
+          const total = calcularTotal();
     </script>
 
     <div class="input-button-container2">
+        
         <button class="default-btn" onclick="finalizarFactura()">
             <span class="default-btn">Finalizar</span>
             <span class="hover-btn">Finalizar</span>

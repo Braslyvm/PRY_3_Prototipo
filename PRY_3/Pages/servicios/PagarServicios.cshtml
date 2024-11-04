@@ -28,7 +28,7 @@
             box-shadow: 0 4px 20px rgba(194, 120, 59, 0.1);
             padding: 20px;
             width: 90%;
-            max-width: 1000px; /* Ancho máximo */
+            max-width: 1000px;
             text-align: center;
         }
 
@@ -48,16 +48,16 @@
             display: flex;
             align-items: center;
             margin: 10px 0;
-            justify-content: space-between; /* Asegura que los elementos se distribuyan */
+            justify-content: space-between;
         }
 
         input, select {
             padding: 10px;
-            border: 2px solid #4CAF50; /* Verde */
+            border: 2px solid #4CAF50;
             border-radius: 5px;
             font-size: 16px;
-            flex: 1; /* Permite que los campos crezcan */
-            margin-left: 10px; /* Espacio entre la etiqueta y el campo */
+            flex: 1;
+            margin-left: 10px;
             transition: border-color 0.3s; 
         }
 
@@ -91,18 +91,17 @@
         }
 
         #formularioEspecifico {
-            margin-top: 20px; /* Separación entre los formularios */
+            margin-top: 20px;
             width: 100%;
             display: flex;
-            flex-direction: column; /* Coloca los campos uno debajo del otro */
+            flex-direction: column;
         }
 
-        /* Resto de estilos... */
         #lucky {
             font-size: 2em;
             color: #fab142; 
             margin-bottom: 20px;
-            text-shadow: 2px 2px 0 #fab142, -2px -2px 0 #1fdf0e; /* Sombra doble */
+            text-shadow: 2px 2px 0 #fab142, -2px -2px 0 #1fdf0e;
         }
     </style>
 </head>
@@ -125,21 +124,11 @@
         </div>
 
         <div id="formularioEspecifico">
-            <!-- Aquí se mostrarán los campos específicos según el servicio seleccionado -->
-        </div>
-
-        <div class="form-group">
-            <label for="metodoPago">Método de Pago:</label>
-            <select id="metodoPago" name="metodoPago" required>
-                <option value=""></option>
-                <option value="tarjeta">Tarjeta</option>
-                <option value="transferencia">Transferencia</option>
-                <option value="efectivo">Efectivo</option>
-            </select>
+          
         </div>
 
         <div class="button-container">
-            <button type="submit">Pagar</button>
+            <button type="button" onclick="realizarPago()">Pagar</button>
             <button type="button" onclick="location.href='@Url.Page("NombreDeLaPaginaAnterior")'">Volver</button>
         </div>
     </form>
@@ -165,6 +154,38 @@
                 formularioEspecifico.innerHTML += '<div class="form-group"><label for="numeroTelefono">Número de Teléfono:</label><input type="text" id="numeroTelefono" name="numeroTelefono" required /></div>';
             }
         });
+
+        function calcularTotal() {
+            
+            const servicioSeleccionado = document.getElementById('servicio').value;
+            let total = 0;
+
+         
+            switch (servicioSeleccionado) {
+                case 'agua':
+                    total = 20000; 
+                    break;
+                case 'luz':
+                    total = 30000; 
+                    break;
+                case 'recibos':
+                    total = 1500; 
+                    break;
+                case 'recargas':
+                    total = 1000; 
+                    break;
+            }
+            return total;
+        }
+
+        function realizarPago() {
+            const total = calcularTotal();
+            if (total > 0) {
+                window.location.href = `/Pagos/Pago?montoTotal=${total.toFixed(2)}`;
+            } else {
+                alert("Por favor, selecciona un servicio válido.");
+            }
+        }
     </script>
 }
 
