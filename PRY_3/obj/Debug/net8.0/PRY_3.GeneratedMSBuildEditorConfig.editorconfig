@@ -26,10 +26,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjdHVyYWNpb25cZmFjdHVyYWNpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Facturacion/Ticket.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjdHVyYWNpb25cVGlja2V0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/GestionUsuarios/Usuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblVzdWFyaW9zXFVzdWFyaW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -44,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Products.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/servicios/PagarServicios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcc2VydmljaW9zXFBhZ2FyU2VydmljaW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Shared/_ValidationScriptsPartial.cshtml]
