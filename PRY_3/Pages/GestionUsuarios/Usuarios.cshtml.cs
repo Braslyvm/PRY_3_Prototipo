@@ -98,3 +98,4 @@ namespace PRY_3.Pages
         public string correo { get; set; }
     }
 }
+ 
