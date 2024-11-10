@@ -1,0 +1,106 @@
+@page
+@model PRY_3.Pages.Descuento
+@{
+    ViewData["Title"] = "Descuento";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Descuentos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container-descuento {
+            max-width: 300px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Contenedor para agregar nuevo descuento -->
+        <div class="col-md-4 container-descuento">
+            <h4>Agregar Nuevo Descuento</h4>
+            <form id="formDescuento">
+                <div class="mb-3">
+                    <label for="codigoDescuento" class="form-label">Código de Descuento</label>
+                    <input type="text" class="form-control" id="codigoDescuento" required>
+                </div>
+                <div class="mb-3">
+                    <label for="productoDescuento" class="form-label">Producto</label>
+                    <input type="text" class="form-control" id="productoDescuento" required>
+                </div>
+                <div class="mb-3">
+                    <label for="porcentajeDescuento" class="form-label">Porcentaje de Descuento</label>
+                    <input type="number" class="form-control" id="porcentajeDescuento" min="1" max="100" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaInicio" class="form-label">Fecha Inicial</label>
+                    <input type="date" class="form-control" id="fechaInicio" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaFin" class="form-label">Fecha Final</label>
+                    <input type="date" class="form-control" id="fechaFin" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Descuento</button>
+            </form>
+        </div>
+
+        <!-- Tabla para mostrar los descuentos -->
+        <div class="col-md-8">
+            <h4>Lista de Descuentos</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>% Descuento</th>
+                        <th>Fecha Inicial</th>
+                        <th>Fecha Final</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaDescuentos">
+                    <!-- Las filas de la tabla se agregarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función para agregar un nuevo descuento a la tabla
+    document.getElementById("formDescuento").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Obtener valores del formulario
+        let codigoDescuento = document.getElementById("codigoDescuento").value;
+        let productoDescuento = document.getElementById("productoDescuento").value;
+        let porcentajeDescuento = document.getElementById("porcentajeDescuento").value;
+        let fechaInicio = document.getElementById("fechaInicio").value;
+        let fechaFin = document.getElementById("fechaFin").value;
+
+        // Crear una nueva fila en la tabla
+        let tabla = document.getElementById("tablaDescuentos");
+        let fila = tabla.insertRow();
+
+        // Insertar celdas en la fila
+        fila.insertCell(0).textContent = codigoDescuento;
+        fila.insertCell(1).textContent = productoDescuento;
+        fila.insertCell(2).textContent = porcentajeDescuento + '%';
+        fila.insertCell(3).textContent = fechaInicio;
+        fila.insertCell(4).textContent = fechaFin;
+
+        // Limpiar el formulario después de agregar el descuento
+        document.getElementById("formDescuento").reset();
+    });
+</script>
+
+</body>
+</html>
