@@ -136,30 +136,60 @@
             padding: 20px;
         }
 
-        li {
-            background-color: #f8f8f8; 
-            margin: 5px 0;
-            padding: 10px;
-            border: 1px solid #070707;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+li {
+    background-color: #f8f8f8; 
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #070707;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        li button {
-            background-color: #fc3b0b;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 5px;
-        }
+li button {
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+}
 
-        li button:hover {
-            background-color: #e4e00d; 
-        }
+
+li button:nth-child(1) {
+    background-color: #fc3b0b; /* Rojo */
+}
+
+li button:nth-child(1):hover {
+    background-color: #e4e00d;
+}
+
+/* Botón de cantidad */
+li input[type="number"] {
+    width: 50px; 
+    margin: 0 10px; 
+}
+
+/* Botón de aumentar cantidad (+) */
+li button:nth-child(3) {
+    background-color: #4CAF50; 
+}
+
+li button:nth-child(3):hover {
+    background-color: #45a049; 
+}
+
+/* Botón de eliminar */
+li button:last-child {
+    background-color: #f44336; 
+}
+
+li button:last-child:hover {
+    background-color: #d32f2f; 
+}
+
+
         .input-button-container {
     display: flex;
     align-items: center;
@@ -195,7 +225,7 @@
             font-size: 2em;
             color: #fab142; 
             margin-bottom: 20px;
-            text-shadow: 2px 2px 0 #fab142, -2px -2px 0 #1fdf0e; /* Sombra doble */
+            text-shadow: 2px 2px 0 #fab142, -2px -2px 0 #1fdf0e; 
             margin-top: 100;
         }
  
@@ -235,7 +265,6 @@
     </style>
 </head>
 <body>
-
     <div class="container">
         <div id="lucky">LUCKY</div>
         <h1> Facturación de productos </h1>
@@ -256,7 +285,6 @@
         <h3 id="total">Total: ₡0.00</h3> <!-- Mostrar total de la compra -->
     </div>
 
-    <!-- Modal para mostrar el ticket -->
     <div id="ticketModal" class="ticket-modal">
         <div id="ticketModalContent">
             <h2>Ticket de Factura</h2>
@@ -270,7 +298,8 @@
         const productos = [
             { codigo: "001", nombre: "Manzana", tipo: "Fruta", precio: 100, cantidad: 1 },
             { codigo: "002", nombre: "Pan", tipo: "Panadería", precio: 1000, cantidad: 1 },
-            { codigo: "003", nombre: "Leche", tipo: "Lácteos", precio: 750, cantidad: 1 }, { codigo: "004", nombre: "Cafe", tipo: "Fruta", precio: 1500, cantidad: 1 }
+            { codigo: "003", nombre: "Leche", tipo: "Lácteos", precio: 750, cantidad: 1 },
+            { codigo: "004", nombre: "Cafe", tipo: "Fruta", precio: 500, cantidad: 1 }
         ];
         const factura = [];
 
@@ -315,39 +344,32 @@
             const producto = factura.find(p => p.nombre.toLowerCase() === nombre.toLowerCase());
             if (producto) {
                 producto.cantidad = cantidad;
-                actualizarLista();
+                if (producto.cantidad <= 0) {
+                    eliminarProducto(producto.nombre);
+                } else {
+                    actualizarLista();
+                }
             } else {
                 alert('Producto no encontrado en la factura');
             }
         }
+
         function realizarPago() {
-
-
-        window.location.href = `/Pagos/Pago?montoTotal=${calcularTotal().toFixed(2)}`;
-}
-
+            window.location.href = `/Pagos/Pago?montoTotal=${calcularTotal().toFixed(2)}`;
+        }
 
         function finalizarFactura() {
-                 
-
-            // Muestra el contenido de la factura en el modal
             const ticketContent = document.getElementById('ticketContent');
-            ticketContent.innerHTML = factura.map(producto => `${producto.nombre}  - ₡${producto.precio} x ${producto.cantidad}`).join('<br>');
+            ticketContent.innerHTML = factura.map(producto => `${producto.nombre} - ₡${producto.precio} x ${producto.cantidad}`).join('<br>');
             
-            // Muestra el total en el modal
             const ticketTotal = document.getElementById('ticketTotal');
             ticketTotal.innerHTML = `Total: ₡${calcularTotal().toFixed(2)}`;
             
-
-            // Muestra el modal
             document.getElementById('ticketModal').style.display = 'flex';
-       
         }
 
         function cerrarModal() {
-
             document.getElementById('ticketModal').style.display = 'none';
-      
             window.location.href = '/Facturacion/facturacion';
         }
 
@@ -357,43 +379,68 @@
 
             if (factura.length === 0) {
                 const mensajeVacio = document.getElementById('mensaje-vacio');
-                mensajeVacio.style.display = 'block'; // Muestra el mensaje vacío
+                mensajeVacio.style.display = 'block';
                 lista.appendChild(mensajeVacio);
             } else {
                 factura.forEach(producto => {
                     const li = document.createElement('li');
-                    li.textContent = `${producto.nombre} - ${producto.tipo} - ₡${producto.precio} x ${producto.cantidad}`;
+                    li.textContent = `${producto.nombre} - ${producto.tipo} - ₡${producto.precio} x `;
                     
-                    const eliminarBtn = document.createElement('button');
-                    eliminarBtn.textContent = 'Eliminar';
-                    eliminarBtn.onclick = () => eliminarProducto(producto.nombre);
-                    
-                    const modificarBtn = document.createElement('button');
-                    modificarBtn.textContent = 'Modificar Cantidad';
-                    modificarBtn.onclick = () => {
-                        const nuevaCantidad = prompt('Ingrese la nueva cantidad:', producto.cantidad);
-                        if (nuevaCantidad) {
-                            modificarCantidad(producto.nombre, parseInt(nuevaCantidad));
+                    // Botones + y -
+                    const buttonMinus = document.createElement('button');
+                    buttonMinus.textContent = '-';
+                    buttonMinus.onclick = () => {
+                        if (producto.cantidad > 1) {
+                            producto.cantidad -= 1;
+                            actualizarLista();
                         }
                     };
 
+                    const inputCantidad = document.createElement('input');
+                    inputCantidad.type = 'number';
+                    inputCantidad.value = producto.cantidad;
+                    inputCantidad.min = 1;
+                    inputCantidad.style.width = '50px';  // barra más angosta
+                    inputCantidad.addEventListener('change', (event) => {
+                        const nuevaCantidad = parseInt(event.target.value);
+                        if (nuevaCantidad > 0) {
+                            producto.cantidad = nuevaCantidad;
+                        } else {
+                            producto.cantidad = 0;
+                        }
+                        modificarCantidad(producto.nombre, producto.cantidad);
+                    });
+
+                    const buttonPlus = document.createElement('button');
+                    buttonPlus.textContent = '+';
+                    buttonPlus.onclick = () => {
+                        producto.cantidad += 1;
+                        actualizarLista();
+                    };
+
+                    li.appendChild(buttonMinus);
+                    li.appendChild(inputCantidad);
+                    li.appendChild(buttonPlus);
+                    
+                    // Botón de eliminar
+                    const eliminarBtn = document.createElement('button');
+                    eliminarBtn.textContent = 'Eliminar';
+                    eliminarBtn.onclick = () => eliminarProducto(producto.nombre);
                     li.appendChild(eliminarBtn);
-                    li.appendChild(modificarBtn);
+
                     lista.appendChild(li);
                 });
             }
-            // Actualizar el total de la compra
-            document.getElementById('total').innerText = `Total: $${calcularTotal().toFixed(2)}`;
+
+            document.getElementById('total').innerText = `Total: ₡${calcularTotal().toFixed(2)}`;
         }
 
         function calcularTotal() {
             return factura.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
         }
-          const total = calcularTotal();
     </script>
 
     <div class="input-button-container2">
-        
         <button class="default-btn" onclick="finalizarFactura()">
             <span class="default-btn">Finalizar</span>
             <span class="hover-btn">Finalizar</span>
@@ -404,4 +451,249 @@
         </button>
     </div>
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

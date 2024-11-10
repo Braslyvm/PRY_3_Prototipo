@@ -68,7 +68,7 @@ namespace Facturacion
             var producto = factura.FirstOrDefault(p => p.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
             if (producto != null)
             {
-                producto.Cantidad = cantidad;
+                producto.Cantidad += cantidad;
                 return $"Cantidad de {producto.Nombre} actualizada a {cantidad}.";
             }
             else
