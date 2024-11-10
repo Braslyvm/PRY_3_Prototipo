@@ -1,5 +1,4 @@
-369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
-456987123,Carolina,Núñez,Valverde,Femenino,Cartago,Usuario,Inactivo,carolina.nunez@gmail.com
+456987123,raul,Núñez,Valverde,Femenino,Cartago,Usuario,Inactivo,carolina.nunez@gmail.com
 321987654,Sergio,Castillo,Rodríguez,Masculino,Alajuela,Administrador,Activo,sergio.castillo@gmail.com
 147369852,Verónica,Aguilar,Monge,Femenino,San José,Usuario,Activo,veronica.aguilar@gmail.com
 963258741,Javier,Madrigal,Sotela,Masculino,Heredia,Administrador,Inactivo,javier.madrigal@gmail.com
@@ -9,7 +8,6 @@
 789321654,Camila,Pérez,Mora,Femenino,Cartago,Usuario,Activo,camila.perez@gmail.com
 147852369,Rafael,Gutiérrez,Jiménez,Masculino,Alajuela,Administrador,Inactivo,rafael.gutierrez@gmail.com
 963741258,Sonia,Solano,Benavides,Femenino,San José,Usuario,Activo,sonia.solano@gmail.com
-369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
 654321987,José,Salazar,Luna,Masculino,Alajuela,Administrador,Activo,jose.salazar@gmail.com
 789654123,Liliana,Sánchez,Martínez,Femenino,San José,Usuario,Activo,liliana.sanchez@gmail.com
 123987456,Félix,Marín,Chaves,Masculino,Heredia,Administrador,Inactivo,felix.marin@gmail.com
@@ -17,12 +15,10 @@
 321789654,Octavio,Rivera,Torres,Masculino,Alajuela,Administrador,Activo,octavio.rivera@gmail.com
 147258963,Jessica,Torres,Soto,Femenino,San José,Usuario,Inactivo,jessica.torres@gmail.com
 963258741,Christian,Valenzuela,Pérez,Masculino,Heredia,Administrador,Activo,christian.valenzuela@gmail.com
-369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
 654789321,Silvia,Rodríguez,Salas,Femenino,San José,Usuario,Activo,silvia.rodriguez@gmail.com
 789321654,Natalia,Cantillo,Casado,Femenino,Cartago,Usuario,Activo,natalia.cantillo@gmail.com
 147852963,Luis,Chacón,Sierra,Masculino,Alajuela,Administrador,Inactivo,luis.chacon@gmail.com
 963741852,María,Jara,Gómez,Femenino,San José,Usuario,Activo,maria.jara@gmail.com
-369852147,Carolina,Rojas,León,Masculino,Heredia,Administrador,Activo,francisco.rojas@gmail.com
 789456123,Teresa,Alonso,Sandoval,Femenino,San José,Usuario,Activo,teresa.alonso@gmail.com
 963258741,Alicia,Vargas,Pérez,Femenino,Cartago,Usuario,Activo,alicia.vargas@gmail.com
 789123654,Marco,Acuña,Cordero,Masculino,Alajuela,Administrador,Activo,marco.acuna@gmail.com
