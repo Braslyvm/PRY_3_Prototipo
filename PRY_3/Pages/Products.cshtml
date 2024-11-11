@@ -49,7 +49,7 @@
         }
 
         .form-control2 {
-            height: 40px; /* Aumentar la altura */
+            height: 40px;
             line-height: 28px;
             padding: 0 1rem;
             width: 100lh;
@@ -69,7 +69,7 @@
         }
 
         .expandable-row {
-            display: none; /* Initially hidden */
+            display: none;
             transform: scaleY(0);
             transform-origin: top;
             height: 0;
@@ -77,7 +77,7 @@
             overflow: hidden;
         }
         .expandable-row.open {
-            display: table-row; /* Show the row when it's expanded */
+            display: table-row;
             transform: scaleY(1);
             height: auto;
         }
@@ -126,7 +126,6 @@
         </div>
     </div>
 
-    <!-- Contenedor de opciones de filtro -->
     <div id="filterContainer" class="filter-container">
         <label>
             <input type="checkbox" name="filtroTipo" value="nombre" onchange="filtrarProductos()"> Por nombre
@@ -148,14 +147,13 @@
             color: #fff;
         }
 
-        /* Solo redondear las esquinas exteriores de la tabla */
         .table {
-            border-radius: 10px;  /* Redondeo solo en las esquinas exteriores */
-            border: 1px solid #dee2e6;  /* Mantener el borde de la tabla */
-            overflow: hidden;  /* Asegura que las celdas no se salgan de las esquinas redondeadas */
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            overflow: hidden; 
         }
 
-        /* No redondear las celdas */
+
         .table th, .table td {
             border-radius: 0;
         }
@@ -244,7 +242,6 @@
         { "nombre": "Refresco en polvo", "marca": "Tang", "categoria": "Bebidas", "precio": 250, "cantidad": 150, "descripcion": "Refresco en polvo de frutas" }
     ];
         
-        // Función para abrir el modal de agregar producto
     function abrirModalAgregarProducto() {
         const modal = new bootstrap.Modal(document.getElementById('modalAgregarProducto'));
         modal.show();
@@ -258,23 +255,19 @@
         const cantidad = 0;
         const descripcion = document.getElementById('descripcionProducto').value;
         const categoria = document.getElementById('catProducto').value;
-        // Validación de los campos
         if (!nombre || !marca || !precio || !descripcion || !categoria) {
             alert("Por favor, complete todos los campos.");
             return;
         }
 
-        // Agregar el producto al array
         productos.push({ nombre, marca, categoria, precio, cantidad, descripcion });
 
-        // Recargar la tabla
         cargarProductos();
         Swal.fire({
             icon: 'success',
             title: 'Producto agregado',
             text: 'El producto se ha agregado correctamente.',
         });
-        // Cerrar el modal
         const modal = bootstrap.Modal.getInstance(document.getElementById('modalAgregarProducto'));
         modal.hide();
     });
@@ -287,7 +280,6 @@
         document.getElementById("filterContainer").classList.toggle("show");
     }
 
-    // Ocultar el contenedor de filtro al hacer clic fuera
     document.addEventListener('click', function(event) {
         const filterContainer = document.getElementById("filterContainer");
         const filterButton = document.querySelector('.btn-outline-primary');
@@ -296,24 +288,21 @@
         }
     });
 
-    // Función para filtrar productos
     function filtrarProductos() {
         const busqueda = document.getElementById("busqueda").value.trim().toLowerCase();  // Usamos trim() para eliminar espacios
         const filtrosActivos = Array.from(document.querySelectorAll('input[name="filtroTipo"]:checked')).map(input => input.value);
         const precioMin = parseFloat(document.getElementById("precioMin").value) || 0;
         const precioMax = parseFloat(document.getElementById("precioMax").value) || Infinity;
 
-        // Verifica si no hay texto de búsqueda
         if (busqueda === '') {
             const productosFiltrados = productos.filter(producto => {
             const cumpleFiltroPrecio = producto.precio >= precioMin && producto.precio <= precioMax;
             return cumpleFiltroPrecio;
         });
-            mostrarProductos(productosFiltrados);  // Si no hay texto, muestra todos los productos
-            return;  // Sale de la función sin hacer nada más
+            mostrarProductos(productosFiltrados); 
+            return;  
         }
 
-        // Filtrar productos solo si hay texto de búsqueda
         const productosFiltrados = productos.filter(producto => {
             const nombre = producto.nombre.toLowerCase();
             const marca = producto.marca.toLowerCase();
@@ -383,7 +372,6 @@
         const expandableRow = document.getElementById(`expandable-${index}`);
         const isExpanded = expandableRow.classList.contains("open");
 
-        // Collapse all rows first
         const allExpandableRows = document.querySelectorAll('.expandable-row');
         allExpandableRows.forEach(row => row.classList.remove("open"));
 
@@ -428,34 +416,28 @@
     }
 
     function guardarModificacion(index) {
-        // Obtener los nuevos valores de los campos de entrada
         const nuevoNombre = document.getElementById(`nombre-${index}`).value;
         const nuevaMarca = document.getElementById(`marca-${index}`).value;
         const nuevaCat = document.getElementById(`categoria-${index}`).value;
         const nuevaDescripcion = document.getElementById(`descripcion-${index}`).value;
         const nuevoPrecio = parseFloat(document.getElementById(`precio-${index}`).value);
 
-        // Verificar si los datos son válidos
         if (nuevoNombre.trim() === '' || nuevaDescripcion.trim() === '' || isNaN(nuevoPrecio) || nuevoPrecio <= 0) {
             Swal.fire('Error', 'Por favor, complete todos los campos correctamente.', 'error');
             return;
         }
 
-        // Actualizar el producto en el array
         productos[index].nombre = nuevoNombre;
         productos[index].marca = nuevaMarca;
         productos[index].categoria = nuevaCat;
         productos[index].descripcion = nuevaDescripcion;
         productos[index].precio = nuevoPrecio;
 
-        // Recargar los productos en la tabla
         cargarProductos();
 
-        // Cerrar la fila expandible
         const expandableRow = document.getElementById(`expandable-${index}`);
         expandableRow.classList.remove("open");
 
-        // Mostrar mensaje de éxito
         Swal.fire('¡Listo!', 'El producto ha sido actualizado correctamente.', 'success');
     }
 

@@ -378,7 +378,7 @@
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
             document.getElementById("currentDateTime").textContent = currentDate.toLocaleDateString("es-ES", options);
         }
-        setInterval(updateDateTime, 1000); // Actualiza cada segundo
+        setInterval(updateDateTime, 1000);
     </script>
 
     <style>
@@ -388,7 +388,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    height: 100vh; /* Opcional, se ajusta al alto completo de la pantalla */
+    height: 100vh;
 }
 
 .main-content h2 {

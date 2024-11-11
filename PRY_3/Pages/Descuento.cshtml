@@ -30,7 +30,6 @@
 <div class="container mt-4" >
     <h2 class="mb-4 text-center" style="color: #0b8e36;"><i class="fa-solid fa-percent"> Descuentos</i></h2>
     <div class="row">
-        <!-- Contenedor para agregar nuevo descuento -->
         <div class="col-md-4 container-descuento" style=" margin-left: -75px; background-color: #f0f0f0; border-radius: 10px;">
             <h4 class="mt-2" style="color: #eeaa0d;"><i class="fa-solid">Nuevo Descuento</i></h4>
             <form id="formDescuento">
@@ -70,20 +69,18 @@
                 color: #fff;
             }
 
-            /* Solo redondear las esquinas exteriores de la tabla */
             .table {
-                border-radius: 10px;  /* Redondeo solo en las esquinas exteriores */
-                border: 1px solid #dee2e6;  /* Mantener el borde de la tabla */
-                overflow: hidden;  /* Asegura que las celdas no se salgan de las esquinas redondeadas */
+                border-radius: 10px;  
+                border: 1px solid #dee2e6;  
+                overflow: hidden;  
             }
 
-            /* No redondear las celdas */
             .table th, .table td {
                 border-radius: 0;
             }
         </style>
 
-        <!-- Tabla para mostrar los descuentos -->
+
         <div class="col-md-9">
             <table class="table table-bordered mt-2">
                 <thead>
@@ -97,7 +94,6 @@
                     </tr>
                 </thead>
                 <tbody id="tablaDescuentos">
-                    <!-- Las filas de la tabla se agregarán aquí -->
                 </tbody>
             </table>
         </div>

@@ -4,7 +4,6 @@
     ViewData["Title"] = "Lotes";
 }
 
-@* Código JavaScript con el array de productos y sus lotes *@
 <script>
     const productosConLotes = [
         { 
@@ -39,10 +38,8 @@
                 { numeroLote: "CA002", fechaLote: "2024-04-10", fechaCaducidad: "2025-01-10", cantidad: 5 }
             ]
         },
-        // Agrega más productos con lotes aquí
     ];
 
-    // Función para cargar lotes en la tabla al cargar la página
     function cargarLotesEnTabla() {
         let tabla = document.getElementById("tablaLotes");
         
@@ -50,32 +47,26 @@
             producto.lotes.forEach(lote => {
                 let fila = tabla.insertRow();
                 
-                // Columna 1: fechaLote (centrado)
                 let celda1 = fila.insertCell(0);
                 celda1.textContent = lote.fechaLote;
                 celda1.style.textAlign = 'center';
                 
-                // Columna 2: fechaCaducidad (centrado)
                 let celda2 = fila.insertCell(1);
                 celda2.textContent = lote.fechaCaducidad;
                 celda2.style.textAlign = 'center';
                 
-                // Columna 3: numeroLote (no centrado)
                 fila.insertCell(2).textContent = lote.numeroLote;
                 
-                // Columna 4: nombre - marca (centrado)
                 let celda4 = fila.insertCell(3);
                 celda4.textContent = `${producto.nombre} - ${producto.marca}`;
 
                 
-                // Columna 5: cantidad (sin centrado, puedes agregarlo si lo necesitas)
                 let celda5 = fila.insertCell(4);
                 celda5.textContent = lote.cantidad;
-                celda5.style.textAlign = 'right';  // Alineación a la derecha                
-                // Columna 6: eliminar botón
+                celda5.style.textAlign = 'right';               
                 let eliminarCelda = fila.insertCell(5);
                 let eliminarBtn = document.createElement("button");
-                eliminarBtn.innerHTML = '<i class="fas fa-trash"></i>'; // ícono Font Awesome
+                eliminarBtn.innerHTML = '<i class="fas fa-trash"></i>';
                 eliminarBtn.className = "btn btn-danger btn-sm";
                 eliminarBtn.onclick = function() { eliminarFila(fila); };
                 eliminarCelda.appendChild(eliminarBtn);
@@ -85,7 +76,6 @@
     }
 
 
-    // Llamar a la función cuando la página se carga
     window.onload = cargarLotesEnTabla;
 </script>
 
@@ -111,7 +101,6 @@
     <div class="container mt-4">
         <h2 class="mb-4 text-center" style="color: #0b8e36;"><i class="fa-solid fa-folder"> Lotes</i></h2>
         <div class="row">
-            <!-- Contenedor para agregar nuevo lote -->
         <div class="col-md-4 container-lote" style=" margin-left: -75px; background-color: #f0f0f0; border-radius: 10px;">
             <h4 class="mt-2" style="color: #eeaa0d;"><i class="fa-solid">Nuevo Lote</i></h4>
             <form id="formLote">
@@ -135,7 +124,6 @@
                         <option value="Frijoles - Don Pedro">Frijoles - Don Pedro</option>
                         <option value="Café - 1820">Café - 1820</option>
                         <option value="Leche - Dos Pinos">Leche - Dos Pinos</option>
-                        <!-- Agregar más opciones según el array de productos -->
                     </select>
                 </div>
                 <div class="mb-2">
@@ -159,20 +147,17 @@
                 color: #fff;
             }
 
-            /* Solo redondear las esquinas exteriores de la tabla */
             .table {
-                border-radius: 10px;  /* Redondeo solo en las esquinas exteriores */
-                border: 1px solid #dee2e6;  /* Mantener el borde de la tabla */
-                overflow: hidden;  /* Asegura que las celdas no se salgan de las esquinas redondeadas */
+                border-radius: 10px;  
+                border: 1px solid #dee2e6; 
+                overflow: hidden;  
             }
 
-            /* No redondear las celdas */
             .table th, .table td {
                 border-radius: 0;
             }
         </style>
 
-        <!-- Tabla para mostrar los lotes -->
         <div class="col-md-9">
             <table class="table table-bordered">
                 <thead>
@@ -181,12 +166,11 @@
                         <th>Fecha de Caducidad</th>
                         <th>Número de Lote</th>
                         <th>Producto</th>
-                        <th class="text-end">Cantidad</th> <!-- Nueva columna de cantidad -->
+                        <th class="text-end">Cantidad</th> 
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tablaLotes">
-                    <!-- Las filas de la tabla se agregarán aquí al cargar la página -->
                 </tbody>
             </table>
         </div>
@@ -194,7 +178,6 @@
 </div>
 
 <script>
-    // Función para eliminar una fila con confirmación SweetAlert
     function eliminarFila(fila) {
         Swal.fire({
             title: '¿Estás seguro?',
