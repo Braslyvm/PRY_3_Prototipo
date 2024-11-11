@@ -39,13 +39,16 @@
                     mainContent.innerHTML = '<iframe src="../Descuento" style="width: 100%; height: 100%; border: none;"></iframe>';
                     break;
                 case 'reportes':
-                    mainContent.innerHTML = '<h2>Reportes</h2><p>Aquí puedes gestionar los reportes.</p>';
+                    mainContent.innerHTML = '<iframe src="../Reportes/sesion" style="width: 100%; height: 100%; border: none;"></iframe>';
+                    break;
+                case 'rservicios':
+                    mainContent.innerHTML = '<iframe src="../Reportes/servicio" style="width: 100%; height: 100%; border: none;"></iframe>';
+                    break;
+                case 'categoria':
+                    mainContent.innerHTML = '<iframe src="../Reportes/categoria" style="width: 100%; height: 100%; border: none;"></iframe>';
                     break;
                 case 'tiquetes':
-                    mainContent.innerHTML = '<h2>Tiquetes</h2><p>Aquí puedes gestionar los tiquetes.</p>';
-                    break;
-                case 'ventaCategoria':
-                    mainContent.innerHTML = '<h2>Venta por Categoría</h2><p>Aquí puedes ver los reportes de ventas por categoría.</p>';
+                    mainContent.innerHTML = '<iframe src="../Reportes/tiquete" style="width: 100%; height: 100%; border: none;"></iframe>';
                     break;
                 case 'usuarios':
                     mainContent.innerHTML = '<iframe src="../GestionUsuarios/Usuarios" style="width: 100%; height: 100%; border: none;"></iframe>';
@@ -317,23 +320,32 @@
             <li>
                 
                 <a href="#">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line fa-xs"></i>
                     <span class="nav-item">Reportes</span>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="#">
-                            <span class="sub-item">Tiquetes</span>
+                        <a href="#" onclick="changeContent('reportes')">
+                            <i class="fa-solid fa-chart-pie fa-xs"></i>
+                            <span class="sup-item">Reporte de Inicio Sesión</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" onclick="changeContent('rservicios')">
+                            <i class="fa-solid fa-credit-card fa-xs"></i>
                             <span class="sub-item">Pago de Servicios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" onclick="changeContent('categoria')">
+                            <i class="fa-solid fa-tags fa-xs"></i>
                             <span class="sub-item">Venta por Categoria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeContent('tiquetes')">
+                            <i class="fa-solid fa-ticket-alt fa-xs"></i>
+                            <span class="sub-item">Reporte de Tiquetes</span>
                         </a>
                     </li>
                 </ul>
