@@ -41,15 +41,6 @@
         }
 
 
-        /* Color de fondo de los inputs de tipo range */
-        .range-container input[type="range"] {
-            color: #0b8e36;
-        }
-
-        /* Cambiar color del texto en los elementos de tipo range cuando se mueve */
-        .range-container input[type="range"]:focus {
-            color: #eeaa0d;
-        }
 
         .form-control:focus {
             border-color: #eeaa0d;
@@ -73,18 +64,26 @@
             border-color: #eeaa0d;
             box-shadow: 0 0 0 0.2rem rgba(182, 145, 43, 0.25);
         }
+
         .btn-modify {
             font-size: 0.9rem;
+        }
+        +.text-center {
+            text-align: center;
+        }
+
+        .text-end {
+            text-align: end;
         }
     </style>
 </head>
 <body>
 <div class="container mt-4">
-    <h2 class="mb-4">Productos</h2>
 
+    <h2 class="mb-4 text-center" style="color: #0b8e36;"><i class="fa-solid fa-carrot"> Productos</i></h2>
     <div class="d-flex align-items-center mb-3">
         <input type="text" class="form-control me-2" style="width: 350px; $input-focus-color: #eeaa0d" id="busqueda" placeholder="Buscar productos..." oninput="filtrarProductos()">
-        <button type="button" class="btn btn-outline-success me-2" onclick="toggleFilterContainer()">
+        <button type="button" class="btn btn-outline-warning me-2" onclick="toggleFilterContainer()">
             <i class="fas fa-filter"></i>
         </button>
         <div class="range-container me-3" >
@@ -95,9 +94,11 @@
             <input type="range" id="precioMax" style="accent-color: #eeaa0d" min="0" max="10000" step="100" value="10000" oninput="mostrarPrecio('precioMax')">
             <span id="precioMaxValor">₡10000</span>
         </div>
-        <button type="button" class="btn btn-primary ms-2" onclick="abrirModalAgregarProducto()">
-            <i class="fas fa-plus"></i> Agregar Producto
-        </button>
+        <div class="ms-auto">
+            <button type="button" class="btn" style="background: #eeaa0d; color: #fff;" onclick="abrirModalAgregarProducto()">
+                <i class="fas fa-plus"></i> Agregar Producto
+            </button>
+        </div>
     </div>
 
     <!-- Contenedor de opciones de filtro -->
@@ -121,15 +122,28 @@
             background-color: #0b8e36;
             color: #fff;
         }
+
+        /* Solo redondear las esquinas exteriores de la tabla */
+        .table {
+            border-radius: 10px;  /* Redondeo solo en las esquinas exteriores */
+            border: 1px solid #dee2e6;  /* Mantener el borde de la tabla */
+            overflow: hidden;  /* Asegura que las celdas no se salgan de las esquinas redondeadas */
+        }
+
+        /* No redondear las celdas */
+        .table th, .table td {
+            border-radius: 0;
+        }
     </style>
 
-    <table class="table table-bordered table-striped mt-4">
+    <table class="table table-bordered mt-4">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Marca</th>
-                <th>Precio Unitario</th>
-                <th>Cantidad</th>
+                <th>Categoría</th>
+                <th class="text-end">Precio Unitario</th>
+                <th class="text-end">Cantidad</th>
                 <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
@@ -145,28 +159,34 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Nuevo Producto</h5>
+                <h5 class="modal-title" id="modalAgregarProductoLabel"><i class="fas"> Nuevo Producto</i></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="formAgregarProducto">
                     <div class="mb-3">
                         <label for="nombreProducto" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreProducto" required>
+                        <input type="text" class="form-control" id="nombreProducto" placeholder="Ingresa el nombre del producto" required>
                     </div>
                     <div class="mb-3">
                         <label for="marcaProducto" class="form-label">Marca</label>
-                        <input type="text" class="form-control" id="marcaProducto" required>
+                        <input type="text" class="form-control" id="marcaProducto" placeholder="Ingresa la marca del producto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="catProducto" class="form-label">Categoría</label>
+                        <input type="text" class="form-control" id="catProducto" placeholder="Ingresa la categoría del producto" required>
                     </div>
                     <div class="mb-3">
                         <label for="precioProducto" class="form-label">Precio Unitario</label>
-                        <input type="number" class="form-control" id="precioProducto" required>
+                        <input type="number" class="form-control" min="1" id="precioProducto" placeholder="Ingresa el precio unitario" required>
                     </div>
                     <div class="mb-3">
                         <label for="descripcionProducto" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="descripcionProducto" required>
+                        <input type="text" class="form-control" id="descripcionProducto" placeholder="Ingresa una descripción del producto" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Agregar Producto</button>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Agregar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -177,26 +197,26 @@
 <script>
     // JSON de productos
     const productos = [
-        { "nombre": "Arroz", "marca": "Tío Pelón", "precio": 1000, "cantidad": 50, "descripcion": "Arroz blanco de primera calidad" },
-        { "nombre": "Frijoles", "marca": "Don Pedro", "precio": 1500, "cantidad": 30, "descripcion": "Frijoles negros enteros" },
-        { "nombre": "Café", "marca": "1820", "precio": 2500, "cantidad": 40, "descripcion": "Café molido tradicional costarricense" },
-        { "nombre": "Leche", "marca": "Dos Pinos", "precio": 700, "cantidad": 20, "descripcion": "Leche entera en caja" },
-        { "nombre": "Azúcar", "marca": "El Ciebo", "precio": 800, "cantidad": 60, "descripcion": "Azúcar refinada" },
-        { "nombre": "Aceite", "marca": "La Favorita", "precio": 2000, "cantidad": 25, "descripcion": "Aceite vegetal" },
-        { "nombre": "Harina", "marca": "Fina", "precio": 1200, "cantidad": 45, "descripcion": "Harina de trigo" },
-        { "nombre": "Galletas", "marca": "Pozuelo", "precio": 600, "cantidad": 80, "descripcion": "Galletas de chocolate" },
-        { "nombre": "Papel Higiénico", "marca": "Scott", "precio": 3000, "cantidad": 50, "descripcion": "Papel higiénico doble hoja" },
-        { "nombre": "Jugo", "marca": "Del Valle", "precio": 500, "cantidad": 40, "descripcion": "Jugo de naranja" },
-        { "nombre": "Salsa de Tomate", "marca": "Lizano", "precio": 900, "cantidad": 30, "descripcion": "Salsa de tomate tradicional" },
-        { "nombre": "Queso", "marca": "Monteverde", "precio": 1500, "cantidad": 25, "descripcion": "Queso semiduro" },
-        { "nombre": "Mantequilla", "marca": "Dos Pinos", "precio": 1200, "cantidad": 20, "descripcion": "Mantequilla sin sal" },
-        { "nombre": "Atún", "marca": "Sardimar", "precio": 800, "cantidad": 60, "descripcion": "Atún en aceite" },
-        { "nombre": "Sardinas", "marca": "Albo", "precio": 700, "cantidad": 50, "descripcion": "Sardinas en tomate" },
-        { "nombre": "Chocolate", "marca": "Tosh", "precio": 1300, "cantidad": 55, "descripcion": "Chocolate oscuro sin azúcar" },
-        { "nombre": "Pan", "marca": "Bimbo", "precio": 600, "cantidad": 35, "descripcion": "Pan blanco tajado" },
-        { "nombre": "Gaseosa", "marca": "Coca-Cola", "precio": 1000, "cantidad": 70, "descripcion": "Gaseosa de cola" },
-        { "nombre": "Agua Embotellada", "marca": "Alpina", "precio": 500, "cantidad": 100, "descripcion": "Agua pura en botella" },
-        { "nombre": "Refresco en polvo", "marca": "Tang", "precio": 250, "cantidad": 150, "descripcion": "Refresco en polvo de frutas" }
+        { "nombre": "Arroz", "marca": "Tío Pelón", "categoria": "Granos", "precio": 1000, "cantidad": 50, "descripcion": "Arroz blanco de primera calidad" },
+        { "nombre": "Frijoles", "marca": "Don Pedro", "categoria": "Granos", "precio": 1500, "cantidad": 30, "descripcion": "Frijoles negros enteros" },
+        { "nombre": "Café", "marca": "1820", "categoria": "Granos", "precio": 2500, "cantidad": 40, "descripcion": "Café molido tradicional costarricense" },
+        { "nombre": "Leche", "marca": "Dos Pinos", "categoria": "Lácteos", "precio": 700, "cantidad": 20, "descripcion": "Leche entera en caja" },
+        { "nombre": "Azúcar", "marca": "El Ciebo", "categoria": "Azúcar",  "precio": 800, "cantidad": 60, "descripcion": "Azúcar refinada" },
+        { "nombre": "Aceite", "marca": "La Favorita", "categoria": "Aceites", "precio": 2000, "cantidad": 25, "descripcion": "Aceite vegetal" },
+        { "nombre": "Harina", "marca": "Fina", "categoria": "Harinas", "precio": 1200, "cantidad": 45, "descripcion": "Harina de trigo" },
+        { "nombre": "Galletas", "marca": "Pozuelo", "categoria": "Harinas", "precio": 600, "cantidad": 80, "descripcion": "Galletas de chocolate" },
+        { "nombre": "Papel Higiénico", "marca": "Scott", "categoria": "Higiene", "precio": 3000, "cantidad": 50, "descripcion": "Papel higiénico doble hoja" },
+        { "nombre": "Jugo", "marca": "Del Valle", "categoria": "Bebidas", "precio": 500, "cantidad": 40, "descripcion": "Jugo de naranja" },
+        { "nombre": "Salsa de Tomate", "marca": "Lizano", "categoria": "Salsas", "precio": 900, "cantidad": 30, "descripcion": "Salsa de tomate tradicional" },
+        { "nombre": "Queso", "marca": "Monteverde", "categoria": "Lácteos", "precio": 1500, "cantidad": 25, "descripcion": "Queso semiduro" },
+        { "nombre": "Mantequilla", "marca": "Dos Pinos", "categoria": "Lácteos", "precio": 1200, "cantidad": 20, "descripcion": "Mantequilla sin sal" },
+        { "nombre": "Atún", "marca": "Sardimar", "categoria": "Enlatados", "precio": 800, "cantidad": 60, "descripcion": "Atún en aceite" },
+        { "nombre": "Sardinas", "marca": "Albo", "categoria": "Enlatados", "precio": 700, "cantidad": 50, "descripcion": "Sardinas en tomate" },
+        { "nombre": "Chocolate", "marca": "Tosh", "categoria": "Dulces", "precio": 1300, "cantidad": 55, "descripcion": "Chocolate oscuro sin azúcar" },
+        { "nombre": "Pan", "marca": "Bimbo", "categoria": "Harinas", "precio": 600, "cantidad": 35, "descripcion": "Pan blanco tajado" },
+        { "nombre": "Gaseosa", "marca": "Coca-Cola", "categoria": "Bebidas", "precio": 1000, "cantidad": 70, "descripcion": "Gaseosa de cola" },
+        { "nombre": "Agua Embotellada", "marca": "Alpina", "categoria": "Bebidas", "precio": 500, "cantidad": 100, "descripcion": "Agua pura en botella" },
+        { "nombre": "Refresco en polvo", "marca": "Tang", "categoria": "Bebidas", "precio": 250, "cantidad": 150, "descripcion": "Refresco en polvo de frutas" }
     ];
         
         // Función para abrir el modal de agregar producto
@@ -212,15 +232,15 @@
         const precio = parseFloat(document.getElementById('precioProducto').value);
         const cantidad = 0;
         const descripcion = document.getElementById('descripcionProducto').value;
-
+        const categoria = document.getElementById('catProducto').value;
         // Validación de los campos
-        if (!nombre || !marca || !precio || !descripcion) {
+        if (!nombre || !marca || !precio || !descripcion || !categoria) {
             alert("Por favor, complete todos los campos.");
             return;
         }
 
         // Agregar el producto al array
-        productos.push({ nombre, marca, precio, cantidad, descripcion });
+        productos.push({ nombre, marca, categoria, precio, cantidad, descripcion });
 
         // Recargar la tabla
         cargarProductos();
@@ -293,14 +313,15 @@
             row.innerHTML = `
                 <td>${producto.nombre}</td>
                 <td>${producto.marca}</td>
-                <td>₡${producto.precio}</td>
-                <td>${producto.cantidad}</td>
+                <td>${producto.categoria}</td>
+                <td class="text-end">₡${producto.precio}</td>
+                <td class="text-end">${producto.cantidad}</td>
                 <td>${producto.descripcion}</td>
-                <td>
-                    <button class="btn btn-warning btn-sm btn-modify" onclick="expandRow(${index})">
+                <td class="text-center">
+                    <button class="btn btn-warning btn-sm btn-modify" style="color: #fff;" onclick="expandRow(${index})">
                         <i class="fas fa-pencil-alt"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${index})">
+                    <button class="btn btn-danger btn-sm"  onclick="eliminarProducto(${index})">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>
@@ -315,11 +336,15 @@
                     <div>
                         <label>Nombre:</label>
                         <input type="text" value="${producto.nombre}" class="form-control" id="nombre-${index}">
-                        <label>Descripción:</label>
+                        <label>Marca:</label>
+                        <input type="text" value="${producto.marca}" class="form-control" id="marca-${index}">
+                        <label>Categoría:</label>
+                        <input type="text" value="${producto.categoria}" class="form-control" id="categoria-${index}">
+                        <label>Nuevo Descripción:</label>
                         <input type="text" value="${producto.descripcion}" class="form-control" id="descripcion-${index}">
                         <label>Nuevo precio:</label>
                         <input type="number" value="${producto.precio}" class="form-control" id="precio-${index}">
-                        <button class="btn btn-success btn-sm" onclick="guardarModificacion(${index})">
+                        <button class="btn btn-success btn-sm mt-2" onclick="guardarModificacion(${index})">
                             <i class="fas fa-save"></i> Guardar cambios
                         </button>
                     </div>
@@ -380,6 +405,8 @@
     function guardarModificacion(index) {
         // Obtener los nuevos valores de los campos de entrada
         const nuevoNombre = document.getElementById(`nombre-${index}`).value;
+        const nuevaMarca = document.getElementById(`marca-${index}`).value;
+        const nuevaCat = document.getElementById(`categoria-${index}`).value;
         const nuevaDescripcion = document.getElementById(`descripcion-${index}`).value;
         const nuevoPrecio = parseFloat(document.getElementById(`precio-${index}`).value);
 
@@ -391,6 +418,8 @@
 
         // Actualizar el producto en el array
         productos[index].nombre = nuevoNombre;
+        productos[index].marca = nuevaMarca;
+        productos[index].categoria = nuevaCat;
         productos[index].descripcion = nuevaDescripcion;
         productos[index].precio = nuevoPrecio;
 

@@ -27,47 +27,72 @@
     </style>
 </head>
 <body>
-<div class="container mt-5">
+<div class="container mt-4">
+    <h2 class="mb-4 text-center" style="color: #0b8e36;"><i class="fa-solid fa-percent"> Descuentos</i></h2>
     <div class="row">
         <!-- Contenedor para agregar nuevo descuento -->
-        <div class="col-md-4 container-descuento">
-            <h4>Agregar Nuevo Descuento</h4>
+        <div class="col-md-3 container-descuento" style=" margin-left: -75px;">
+            <h4 style="color: #eeaa0d;"><i class="fa-solid">Nuevo Descuento</i></h4>
             <form id="formDescuento">
-                <div class="mb-3">
-                    <label for="codigoDescuento" class="form-label">Código de Descuento</label>
-                    <input type="text" class="form-control" id="codigoDescuento" required>
+                <div class="mb-1">
+                    <label for="codigoDescuento" class="form-label ">Código de Descuento</label>
+                    <input type="text" class="form-control" id="codigoDescuento" required placeholder="Ingrese el código de Descuento">
                 </div>
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="productoDescuento" class="form-label">Producto</label>
                     <select class="form-control" id="productoDescuento" required></select>
                 </div>
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="porcentajeDescuento" class="form-label">Porcentaje de Descuento</label>
-                    <input type="number" class="form-control" id="porcentajeDescuento" min="1" max="100" required>
+                    <input type="number" class="form-control" id="porcentajeDescuento" min="1" max="100" required placeholder="Ingrese el porcentaje">
                 </div>
-                <div class="mb-3">
+                <div class="mb-1">
                     <label for="fechaInicio" class="form-label">Fecha Inicial</label>
                     <input type="date" class="form-control" id="fechaInicio" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-2">
                     <label for="fechaFin" class="form-label">Fecha Final</label>
                     <input type="date" class="form-control" id="fechaFin" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Agregar Descuento</button>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success"><i class="fas fa-plus"></i> Agregar Descuento</button>
+                </div>
             </form>
         </div>
 
+        <div class="col  justify-content-center align-items-start">
+            <div style="border-left: 2px solid #ddd; height: 500px;"></div>
+        </div>
+
+        <style>
+            thead {
+                background-color: #eeaa0d;
+                color: #fff;
+            }
+
+            /* Solo redondear las esquinas exteriores de la tabla */
+            .table {
+                border-radius: 10px;  /* Redondeo solo en las esquinas exteriores */
+                border: 1px solid #dee2e6;  /* Mantener el borde de la tabla */
+                overflow: hidden;  /* Asegura que las celdas no se salgan de las esquinas redondeadas */
+            }
+
+            /* No redondear las celdas */
+            .table th, .table td {
+                border-radius: 0;
+            }
+        </style>
+
         <!-- Tabla para mostrar los descuentos -->
-        <div class="col-md-8">
-            <h4>Lista de Descuentos</h4>
-            <table class="table table-striped">
+        <div class="col-md-9">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Código</th>
                         <th>Producto</th>
-                        <th>% Descuento</th>
-                        <th>Fecha Inicial</th>
-                        <th>Fecha Final</th>
+                        <th class="text-end">% Descuento</th>
+                        <th class="text-center">Fecha Inicial</th>
+                        <th class="text-center">Fecha Final</th>
                         <th>Acción</th>
                     </tr>
                 </thead>
@@ -108,6 +133,12 @@
 
     function cargarProductos() {
         const selectProducto = document.getElementById("productoDescuento");
+        const option0 = document.createElement("option");
+        option0.value="";
+        option0.textContent = "Seleccione un producto";
+        option0.disabled = true;
+        option0.selected = true;
+        selectProducto.appendChild(option0);
         productos.forEach(producto => {
             const option = document.createElement("option");
             option.value = `${producto.nombre} - ${producto.marca}`;
@@ -123,14 +154,24 @@
             let fila = tabla.insertRow();
             fila.insertCell(0).textContent = descuento.codigo;
             fila.insertCell(1).textContent = descuento.producto;
-            fila.insertCell(2).textContent = descuento.descuento + '%';
-            fila.insertCell(3).textContent = descuento.fechaInicio;
-            fila.insertCell(4).textContent = descuento.fechaFin;
-            let cellDelete = fila.insertCell(5);
-            let deleteIcon = document.createElement("i");
-            deleteIcon.className = "fas fa-trash btn-delete";
-            deleteIcon.onclick = function() { eliminarDescuento(fila); };
-            cellDelete.appendChild(deleteIcon);
+            let celda3 = fila.insertCell(2);
+            celda3.textContent = descuento.descuento + '%';
+            celda3.style.textAlign = 'right';
+
+            let celda4 = fila.insertCell(3);
+            celda4.textContent = descuento.fechaInicio;
+            let celda5 = fila.insertCell(4);
+            celda5.textContent = descuento.fechaFin;
+            celda4.style.textAlign = 'center';
+            celda5.style.textAlign = 'center';
+
+            let eliminarCelda = fila.insertCell(5);
+            let eliminarBtn = document.createElement("button");
+            eliminarBtn.innerHTML = '<i class="fas fa-trash"></i>'; // ícono Font Awesome
+            eliminarBtn.className = "btn btn-danger btn-sm";
+            eliminarBtn.onclick = function() { eliminarDescuento(fila); };
+            eliminarCelda.appendChild(eliminarBtn);
+            eliminarCelda.style.textAlign = 'center';
         });
     }
 

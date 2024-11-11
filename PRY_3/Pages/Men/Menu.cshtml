@@ -11,6 +11,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/css/menu.css">
 
     <script>
         function changeContent(section) {
@@ -38,13 +39,16 @@
                     mainContent.innerHTML = '<iframe src="../Descuento" style="width: 100%; height: 100%; border: none;"></iframe>';
                     break;
                 case 'reportes':
-                    mainContent.innerHTML = '<h2>Reportes</h2><p>Aquí puedes gestionar los reportes.</p>';
+                    mainContent.innerHTML = '<iframe src="../Reportes/sesion" style="width: 100%; height: 100%; border: none;"></iframe>';
+                    break;
+                case 'rservicios':
+                    mainContent.innerHTML = '<iframe src="../Reportes/servicio" style="width: 100%; height: 100%; border: none;"></iframe>';
+                    break;
+                case 'categoria':
+                    mainContent.innerHTML = '<iframe src="../Reportes/categoria" style="width: 100%; height: 100%; border: none;"></iframe>';
                     break;
                 case 'tiquetes':
-                    mainContent.innerHTML = '<h2>Tiquetes</h2><p>Aquí puedes gestionar los tiquetes.</p>';
-                    break;
-                case 'ventaCategoria':
-                    mainContent.innerHTML = '<h2>Venta por Categoría</h2><p>Aquí puedes ver los reportes de ventas por categoría.</p>';
+                    mainContent.innerHTML = '<iframe src="../Reportes/tiquete" style="width: 100%; height: 100%; border: none;"></iframe>';
                     break;
                 case 'usuarios':
                     mainContent.innerHTML = '<iframe src="../GestionUsuarios/Usuarios" style="width: 100%; height: 100%; border: none;"></iframe>';
@@ -84,6 +88,7 @@
         }
 
         nav {
+            z-index: 2;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -95,12 +100,13 @@
             transition: width 0.2s linear;
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
         }
+    
 
         .main-content {
             flex-grow: 1;
             padding: 1rem;
             padding-left: 100px;
-            background-color: #f9f9f9;
+            background-color: #fcfff6;
             transition: height 0.3s ease;
             height: 100vh;
         }
@@ -188,8 +194,8 @@
 
         .language-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 35px;
+            right: 45px;
             background-color: #fff;
             border-radius: 20%;
             box-shadow: 0 0 10px #00000019;
@@ -223,14 +229,19 @@
 
         .fa{
             position: relative;
-            width: 50px;
-            height: 40px;
+            width: 60px;
+            height: 50px;
             top: 9px;
-            font-size: 24px;
+            font-size: 32px;
             text-align: center;
             color: #0b8e36;
 
         }
+
+        .main-content {
+            z-index: 2;
+        }
+
     </style>
 
     <script>
@@ -309,23 +320,32 @@
             <li>
                 
                 <a href="#">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line fa-xs"></i>
                     <span class="nav-item">Reportes</span>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="#">
-                            <span class="sub-item">Tiquetes</span>
+                        <a href="#" onclick="changeContent('reportes')">
+                            <i class="fa-solid fa-chart-pie fa-xs"></i>
+                            <span class="sup-item">Reporte de Inicio Sesión</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" onclick="changeContent('rservicios')">
+                            <i class="fa-solid fa-credit-card fa-xs"></i>
                             <span class="sub-item">Pago de Servicios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" onclick="changeContent('categoria')">
+                            <i class="fa-solid fa-tags fa-xs"></i>
                             <span class="sub-item">Venta por Categoria</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="changeContent('tiquetes')">
+                            <i class="fa-solid fa-ticket-alt fa-xs"></i>
+                            <span class="sub-item">Reporte de Tiquetes</span>
                         </a>
                     </li>
                 </ul>
@@ -351,9 +371,8 @@
         </ul>
     </nav>
 
-
     <div class="main-content" id="mainContent">
-
+        
         <h2>Bienvenido al Menú</h2>
         <p>Seleccione una opción del menú lateral para comenzar.</p>
     </div>
