@@ -11,6 +11,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="~/css/menu.css">
 
     <script>
         function changeContent(section) {
@@ -84,6 +85,7 @@
         }
 
         nav {
+            z-index: 2;
             position: absolute;
             top: 0;
             bottom: 0;
@@ -95,12 +97,13 @@
             transition: width 0.2s linear;
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
         }
+    
 
         .main-content {
             flex-grow: 1;
             padding: 1rem;
             padding-left: 100px;
-            background-color: #f9f9f9;
+            background-color: #fcfff6;
             transition: height 0.3s ease;
             height: 100vh;
         }
@@ -188,8 +191,8 @@
 
         .language-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 35px;
+            right: 45px;
             background-color: #fff;
             border-radius: 20%;
             box-shadow: 0 0 10px #00000019;
@@ -223,14 +226,19 @@
 
         .fa{
             position: relative;
-            width: 50px;
-            height: 40px;
+            width: 60px;
+            height: 50px;
             top: 9px;
-            font-size: 24px;
+            font-size: 32px;
             text-align: center;
             color: #0b8e36;
 
         }
+
+        .main-content {
+            z-index: 2;
+        }
+
     </style>
 
     <script>
@@ -351,9 +359,8 @@
         </ul>
     </nav>
 
-
     <div class="main-content" id="mainContent">
-
+        
         <h2>Bienvenido al Menú</h2>
         <p>Seleccione una opción del menú lateral para comenzar.</p>
     </div>
