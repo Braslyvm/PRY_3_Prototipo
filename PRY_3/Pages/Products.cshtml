@@ -40,6 +40,27 @@
             font-size: 0.9rem;
         }
 
+        .group {
+            display: flex;
+            line-height: 28px;
+            align-items: center;
+            position: relative;
+            max-width: 1000px;
+        }
+
+        .form-control2 {
+            height: 40px; /* Aumentar la altura */
+            line-height: 28px;
+            padding: 0 1rem;
+            width: 100lh;
+            padding-left: 2.5rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            outline: none;
+            background-color: #ffffff;
+            color: #0d0c22;
+            box-shadow: 0 0 5px rgb(138, 156, 136), 0 0 0 10px #567c5d1a;
+        }
 
 
         .form-control:focus {
@@ -60,10 +81,7 @@
             transform: scaleY(1);
             height: auto;
         }
-        .form-control:focus {
-            border-color: #eeaa0d;
-            box-shadow: 0 0 0 0.2rem rgba(182, 145, 43, 0.25);
-        }
+
 
         .btn-modify {
             font-size: 0.9rem;
@@ -82,7 +100,14 @@
 
     <h2 class="mb-4 text-center" style="color: #0b8e36;"><i class="fa-solid fa-carrot"> Productos</i></h2>
     <div class="d-flex align-items-center mb-3">
-        <input type="text" class="form-control me-2" style="width: 350px; $input-focus-color: #eeaa0d" id="busqueda" placeholder="Buscar productos..." oninput="filtrarProductos()">
+        <div class="group">
+            <svg class="icon" aria-hidden="true" style="position: absolute; left: 1rem; fill: #777; width: 1rem; height: 1rem;" viewBox="0 0 24 24" width="26" height="16">
+                <g>
+                    <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                </g>
+            </svg>
+            <input type="text" class="form-control2 me-3" style="width: 350px; $input-focus-color: #eeaa0d" id="busqueda" placeholder="Buscar productos..." oninput="filtrarProductos()">
+        </div>
         <button type="button" class="btn btn-outline-warning me-2" onclick="toggleFilterContainer()">
             <i class="fas fa-filter"></i>
         </button>
@@ -332,7 +357,7 @@
             expandableRow.classList.add("expandable-row");
             expandableRow.setAttribute("id", `expandable-${index}`);
             expandableRow.innerHTML = `
-                <td colspan="6">
+                <td colspan="6" style="background-color: #f0f0f0; ">
                     <div>
                         <label>Nombre:</label>
                         <input type="text" value="${producto.nombre}" class="form-control" id="nombre-${index}">
