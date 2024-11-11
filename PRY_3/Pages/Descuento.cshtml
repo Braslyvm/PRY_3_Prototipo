@@ -11,18 +11,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Descuentos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .container-descuento {
             max-width: 300px;
         }
-
         .form-label {
             font-weight: bold;
+        }
+        .btn-delete {
+            color: #dc3545;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-
 <div class="container mt-5">
     <div class="row">
         <!-- Contenedor para agregar nuevo descuento -->
@@ -35,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="productoDescuento" class="form-label">Producto</label>
-                    <input type="text" class="form-control" id="productoDescuento" required>
+                    <select class="form-control" id="productoDescuento" required></select>
                 </div>
                 <div class="mb-3">
                     <label for="porcentajeDescuento" class="form-label">Porcentaje de Descuento</label>
@@ -64,6 +68,7 @@
                         <th>% Descuento</th>
                         <th>Fecha Inicial</th>
                         <th>Fecha Final</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody id="tablaDescuentos">
@@ -75,32 +80,113 @@
 </div>
 
 <script>
-    // Función para agregar un nuevo descuento a la tabla
+    const productos = [
+        { nombre: "Arroz", marca: "Tío Pelón" },
+        { nombre: "Frijoles", marca: "Don Pedro" },
+        { nombre: "Café", marca: "1820" },
+        { nombre: "Leche", marca: "Dos Pinos" },
+        { nombre: "Azúcar", marca: "El Ciebo" },
+        { nombre: "Aceite", marca: "La Favorita" },
+        { nombre: "Harina", marca: "Fina" },
+        { nombre: "Galletas", marca: "Pozuelo" },
+        { nombre: "Papel Higiénico", marca: "Scott" },
+        { nombre: "Jugo", marca: "Del Valle" }
+    ];
+
+    const descuentosIniciales = [
+        {codigo: "D001", producto: "Arroz - Tío Pelón", descuento: 10, fechaInicio: "2024-11-01", fechaFin: "2024-11-30"},
+        {codigo: "D002", producto: "Frijoles - Don Pedro", descuento: 15, fechaInicio: "2024-10-10", fechaFin: "2024-11-10"},
+        {codigo: "D003", producto: "Café - 1820", descuento: 20, fechaInicio: "2024-11-05", fechaFin: "2024-11-25"},
+        {codigo: "D004", producto: "Leche - Dos Pinos", descuento: 5, fechaInicio: "2024-10-20", fechaFin: "2024-11-20"},
+        {codigo: "D005", producto: "Azúcar - El Ciebo", descuento: 12, fechaInicio: "2024-11-10", fechaFin: "2024-12-01"},
+        {codigo: "D006", producto: "Aceite - La Favorita", descuento: 18, fechaInicio: "2024-11-03", fechaFin: "2024-11-27"},
+        {codigo: "D007", producto: "Harina - Fina", descuento: 8, fechaInicio: "2024-10-25", fechaFin: "2024-11-15"},
+        {codigo: "D008", producto: "Galletas - Pozuelo", descuento: 25, fechaInicio: "2024-11-01", fechaFin: "2024-11-30"},
+        {codigo: "D009", producto: "Papel Higiénico - Scott", descuento: 7, fechaInicio: "2024-11-05", fechaFin: "2024-11-20"},
+        {codigo: "D010", producto: "Jugo - Del Valle", descuento: 5, fechaInicio: "2024-11-10", fechaFin: "2024-11-25"}
+    ];
+
+    function cargarProductos() {
+        const selectProducto = document.getElementById("productoDescuento");
+        productos.forEach(producto => {
+            const option = document.createElement("option");
+            option.value = `${producto.nombre} - ${producto.marca}`;
+            option.textContent = `${producto.nombre} - ${producto.marca}`;
+            selectProducto.appendChild(option);
+        });
+    }
+
+    function cargarDescuentosIniciales() {
+        let tabla = document.getElementById("tablaDescuentos");
+        
+        descuentosIniciales.forEach(descuento => {
+            let fila = tabla.insertRow();
+            fila.insertCell(0).textContent = descuento.codigo;
+            fila.insertCell(1).textContent = descuento.producto;
+            fila.insertCell(2).textContent = descuento.descuento + '%';
+            fila.insertCell(3).textContent = descuento.fechaInicio;
+            fila.insertCell(4).textContent = descuento.fechaFin;
+            let cellDelete = fila.insertCell(5);
+            let deleteIcon = document.createElement("i");
+            deleteIcon.className = "fas fa-trash btn-delete";
+            deleteIcon.onclick = function() { eliminarDescuento(fila); };
+            cellDelete.appendChild(deleteIcon);
+        });
+    }
+
+    function eliminarDescuento(fila) {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Esta acción no se puede deshacer",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fila.remove();
+                Swal.fire(
+                    'Eliminado',
+                    'El descuento ha sido eliminado.',
+                    'success'
+                );
+            }
+        });
+    }
+
     document.getElementById("formDescuento").addEventListener("submit", function(event) {
         event.preventDefault();
-
-        // Obtener valores del formulario
+        
         let codigoDescuento = document.getElementById("codigoDescuento").value;
         let productoDescuento = document.getElementById("productoDescuento").value;
         let porcentajeDescuento = document.getElementById("porcentajeDescuento").value;
         let fechaInicio = document.getElementById("fechaInicio").value;
         let fechaFin = document.getElementById("fechaFin").value;
 
-        // Crear una nueva fila en la tabla
         let tabla = document.getElementById("tablaDescuentos");
         let fila = tabla.insertRow();
 
-        // Insertar celdas en la fila
         fila.insertCell(0).textContent = codigoDescuento;
         fila.insertCell(1).textContent = productoDescuento;
         fila.insertCell(2).textContent = porcentajeDescuento + '%';
         fila.insertCell(3).textContent = fechaInicio;
         fila.insertCell(4).textContent = fechaFin;
 
-        // Limpiar el formulario después de agregar el descuento
+        let eliminarCelda = fila.insertCell(5);
+        let eliminarBtn = document.createElement("button");
+        eliminarBtn.innerHTML = '<i class="fas fa-trash"></i>'; // ícono Font Awesome
+        eliminarBtn.className = "btn btn-danger btn-sm";
+        eliminarBtn.onclick = function() { eliminarDescuento(fila); };
+        eliminarCelda.appendChild(eliminarBtn);
+
         document.getElementById("formDescuento").reset();
     });
-</script>
 
+    window.onload = function() {
+        cargarProductos();
+        cargarDescuentosIniciales();
+    }
+</script>
 </body>
 </html>

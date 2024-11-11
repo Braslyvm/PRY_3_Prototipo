@@ -1,247 +1,45 @@
-@page
-@model PagoModel
-@{
-    ViewData["Title"] = "Gestión de Pago";
-}
-
-<html lang="es">  
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff; 
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-
-        .container {
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 4px 20px rgba(194, 120, 59, 0.1);
-            padding: 20px;
-            width: 90%;
-            max-width: 1000px;
-            text-align: center;
-        }
-
-        h2 {
-            color: #1b1a1a;
-            margin-bottom: 15px;
-        }
-
-        label {
-            color: #4CAF50; 
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block; 
-        }
-
-        .form-group {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-            justify-content: space-between;
-        }
-
-        input, select {
-            padding: 10px;
-            border: 2px solid #4CAF50;
-            border-radius: 5px;
-            font-size: 16px;
-            flex: 1;
-            margin-left: 10px;
-            transition: border-color 0.3s; 
-        }
-
-        input:focus, select:focus {
-            border-color: #ff9966; 
-            outline: none;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        button {
-            position: relative;
-            overflow: hidden;
-            outline: none;
-            cursor: pointer;
-            border-radius: 5px;
-            border: none;
-            font-family: "Inter", sans-serif;
-            padding: 1em 1.5em;
-            color: white;
-            background-image: linear-gradient(90.1deg, rgba(84, 212, 228, 1) 0.2%, rgba(68, 36, 164, 1) 99.9%);
-            transition: all 0.3s ease;
-            margin: 5px;
-        }
-
-        button:hover {
-            background-image: linear-gradient(90.1deg, rgba(68, 36, 164, 1) 0.2%, rgba(84, 212, 228, 1) 99.9%);
-        }
-
-        #formularioEspecifico {
-            margin-top: 20px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #cambioTexto {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        #lucky {
-            font-size: 2em;
-            color: #fab142; 
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 0 #fab142, -2px -2px 0 #1fdf0e;
-        }
-
-        .horizontal-form {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        #mensajeExito {
-            display: none;
-            color: green;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        #mensajeError {
-            display: none;
-            color: red;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        #confirmacionPago {
-            display: none;
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div id="lucky" style="text-align: center;">LUCKY</div>
-    <h2>Gestión de Pago</h2>
-
-    <form method="post" id="formPago">
-        <div>
-            <label>Monto Total a Pagar: ₡</label>
-            <span>@Model.MontoTotal</span>
-        </div>
-
-        <div id="metodoPagoContainer">
-            <label>Método de Pago:</label>
-            <button type="button" onclick="seleccionarMetodo('tarjeta')">Pago con Tarjeta</button>
-            <button type="button" onclick="seleccionarMetodo('efectivo')">Pago en Efectivo</button>
-        </div>
-
-        <div id="pagoTarjeta" style="display: none;">
-            <h3>Pago con Tarjeta</h3>
-            <div class="horizontal-form">
-                <label for="numeroTarjeta">Número de Tarjeta:</label>
-                <input type="text" id="numeroTarjeta" asp-for="NumeroTarjeta" maxlength="16" required />
-            </div>
-            <div class="horizontal-form">
-                <label for="fechaExpiracion">Fecha de Expiración:</label>
-                <input type="month" id="fechaExpiracion" asp-for="FechaExpiracion" required />
-            </div>
-            <div class="horizontal-form">
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" asp-for="CVV" maxlength="3" required />
-            </div>
-            <button type="button" onclick="realizarPago('tarjeta')">Confirmar Pago con Tarjeta</button>
-        </div>
-
-        <div id="pagoEfectivo" style="display: none;">
-            <h3>Pago en Efectivo</h3>
-            <div class="horizontal-form">
-                <label for="montoEntregado">Monto Entregado:</label>
-                <input type="number" id="montoEntregado" asp-for="MontoEntregado" step="0.01" min="0" required />
-            </div>
-            
-            <p id="cambioTexto">El cambio a devolver es: ₡<span>@Model.Cambio</span></p>
-            <button type="button" onclick="realizarPago('efectivo')">Confirmar Pago en Efectivo</button>
-        </div>
-
-        <div id="confirmacionPago">
-            <h3>Pago Confirmado</h3>
-            <p>Total de la Factura: ₡<span id="totalFactura">@Model.MontoTotal</span></p>
-            <button type="button" onclick="volver()">Volver</button>
-        </div>
-        
-        <div class="button-container">
-            <button type="button" onclick="window.history.back();">Cancelar</button>
-            <button type="button" id="cambiarMetodo" style="display: none;" onclick="cambiarMetodo()">Cambiar Método de Pago</button>
-        </div>
-    </form>
-
-    <div id="mensajeExito">Pago exitoso. ¡Gracias!</div>
-    <div id="mensajeError">El monto entregado no es suficiente. Intenta con otro método de pago.</div>
-</div>
-
-<script>
-    function seleccionarMetodo(metodo) {
-        document.getElementById("metodoPagoContainer").style.display = "none";
-        document.getElementById("pagoTarjeta").style.display = metodo === 'tarjeta' ? 'block' : 'none';
-        document.getElementById("pagoEfectivo").style.display = metodo === 'efectivo' ? 'block' : 'none';
-        document.getElementById("cambiarMetodo").style.display = "block";
-    }
-
-    function cambiarMetodo() {
-        document.getElementById("metodoPagoContainer").style.display = "block"; 
-        document.getElementById("pagoTarjeta").style.display = 'none'; 
-        document.getElementById("pagoEfectivo").style.display = 'none';
-        document.getElementById("cambiarMetodo").style.display = "none";
-        document.getElementById("mensajeExito").style.display = "none";
-        document.getElementById("mensajeError").style.display = "none"; 
-        document.getElementById("confirmacionPago").style.display = "none";
-    }
-
-    function realizarPago(metodo) {
-        if (metodo === 'efectivo') {
-            const montoEntregado = parseFloat(document.getElementById("montoEntregado").value);
-            const montoTotal = parseFloat('@Model.MontoTotal');
-
-            if (montoEntregado < montoTotal) {
-                document.getElementById("mensajeError").style.display = "block"; 
-                return;
-            }
-        }
-        // Ocultar formularios y botones
-    document.getElementById("metodoPagoContainer").style.display = "none"; 
-    document.getElementById("pagoTarjeta").style.display = 'none'; 
-    document.getElementById("pagoEfectivo").style.display = 'none';
-    document.getElementById("cambiarMetodo").style.display = "none";  
-     document.querySelector(".button-container").style.display = "none";   
-        // Mostrar mensaje de éxito y total de la factura
-        document.getElementById("mensajeExito").style.display = "block"; 
-        document.getElementById("confirmacionPago").style.display = "block"; 
-        document.getElementById("totalFactura").textContent = '@Model.MontoTotal'; 
-    }
-
-    function volver() {
-        window.history.back(); 
-    }
-</script>
-
-</body>
-</html>
+const productosConLotes = [
+    { 
+        nombre: "Arroz", 
+        marca: "Tío Pelón", 
+        precio: 1000, 
+        cantidad: 50, 
+        descripcion: "Arroz blanco de primera calidad",
+        lotes: [
+            { numeroLote: "AR001", fechaLote: "2024-01-01", fechaCaducidad: "2024-12-31" },
+            { numeroLote: "AR002", fechaLote: "2024-03-15", fechaCaducidad: "2025-02-28" }
+        ]
+    },
+    { 
+        nombre: "Frijoles", 
+        marca: "Don Pedro", 
+        precio: 1500, 
+        cantidad: 30, 
+        descripcion: "Frijoles negros enteros",
+        lotes: [
+            { numeroLote: "FR001", fechaLote: "2024-02-01", fechaCaducidad: "2025-01-31" }
+        ]
+    },
+    { 
+        nombre: "Café", 
+        marca: "1820", 
+        precio: 2500, 
+        cantidad: 40, 
+        descripcion: "Café molido tradicional costarricense",
+        lotes: [
+            { numeroLote: "CA001", fechaLote: "2024-01-10", fechaCaducidad: "2024-10-10" },
+            { numeroLote: "CA002", fechaLote: "2024-04-10", fechaCaducidad: "2025-01-10" }
+        ]
+    },
+    { 
+        nombre: "Leche", 
+        marca: "Dos Pinos", 
+        precio: 700, 
+        cantidad: 20, 
+        descripcion: "Leche entera en caja",
+        lotes: [
+            { numeroLote: "LE001", fechaLote: "2024-01-20", fechaCaducidad: "2024-03-20" }
+        ]
+    },
+    // Agregar lotes para los demás productos en el mismo formato
+];

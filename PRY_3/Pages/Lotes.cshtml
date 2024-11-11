@@ -4,6 +4,72 @@
     ViewData["Title"] = "Lotes";
 }
 
+@* Código JavaScript con el array de productos y sus lotes *@
+<script>
+    const productosConLotes = [
+        { 
+            nombre: "Arroz", 
+            marca: "Tío Pelón", 
+            precio: 1000, 
+            cantidad: 50, 
+            descripcion: "Arroz blanco de primera calidad",
+            lotes: [
+                { numeroLote: "AR001", fechaLote: "2024-01-01", fechaCaducidad: "2024-12-31", cantidad: 20 },
+                { numeroLote: "AR002", fechaLote: "2024-03-15", fechaCaducidad: "2025-02-28", cantidad: 15 }
+            ]
+        },
+        { 
+            nombre: "Frijoles", 
+            marca: "Don Pedro", 
+            precio: 1500, 
+            cantidad: 30, 
+            descripcion: "Frijoles negros enteros",
+            lotes: [
+                { numeroLote: "FR001", fechaLote: "2024-02-01", fechaCaducidad: "2025-01-31", cantidad: 25 }
+            ]
+        },
+        { 
+            nombre: "Café", 
+            marca: "1820", 
+            precio: 2500, 
+            cantidad: 40, 
+            descripcion: "Café molido tradicional costarricense",
+            lotes: [
+                { numeroLote: "CA001", fechaLote: "2024-01-10", fechaCaducidad: "2024-10-10", cantidad: 10 },
+                { numeroLote: "CA002", fechaLote: "2024-04-10", fechaCaducidad: "2025-01-10", cantidad: 5 }
+            ]
+        },
+        // Agrega más productos con lotes aquí
+    ];
+
+    // Función para cargar lotes en la tabla al cargar la página
+    function cargarLotesEnTabla() {
+        let tabla = document.getElementById("tablaLotes");
+        
+        productosConLotes.forEach(producto => {
+            producto.lotes.forEach(lote => {
+                let fila = tabla.insertRow();
+                fila.insertCell(0).textContent = lote.fechaLote;
+                fila.insertCell(1).textContent = lote.fechaCaducidad;
+                fila.insertCell(2).textContent = lote.numeroLote;
+                fila.insertCell(3).textContent = `${producto.nombre} - ${producto.marca}`;
+                fila.insertCell(4).textContent = lote.cantidad; // Columna de cantidad
+
+                // Agregar botón de eliminación
+                let eliminarCelda = fila.insertCell(5);
+                let eliminarBtn = document.createElement("button");
+                eliminarBtn.innerHTML = '<i class="fas fa-trash"></i>'; // ícono Font Awesome
+                eliminarBtn.className = "btn btn-danger btn-sm";
+                eliminarBtn.onclick = function() { eliminarFila(fila); };
+                eliminarCelda.appendChild(eliminarBtn);
+            });
+        });
+    }
+
+    // Llamar a la función cuando la página se carga
+    window.onload = cargarLotesEnTabla;
+</script>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,11 +77,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Lotes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .container-lote {
             max-width: 300px;
         }
-
         .form-label {
             font-weight: bold;
         }
@@ -43,7 +109,18 @@
                 </div>
                 <div class="mb-3">
                     <label for="producto" class="form-label">Producto</label>
-                    <input type="text" class="form-control" id="producto" required>
+                    <select class="form-control" id="producto" required>
+                        <option value="" disabled selected>Seleccione un producto</option>
+                        <option value="Arroz - Tío Pelón">Arroz - Tío Pelón</option>
+                        <option value="Frijoles - Don Pedro">Frijoles - Don Pedro</option>
+                        <option value="Café - 1820">Café - 1820</option>
+                        <option value="Leche - Dos Pinos">Leche - Dos Pinos</option>
+                        <!-- Agregar más opciones según el array de productos -->
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" min="1" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Agregar Lote</button>
             </form>
@@ -59,10 +136,12 @@
                         <th>Fecha de Caducidad</th>
                         <th>Número de Lote</th>
                         <th>Producto</th>
+                        <th>Cantidad</th> <!-- Nueva columna de cantidad -->
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tablaLotes">
-                    <!-- Las filas de la tabla se agregarán aquí -->
+                    <!-- Las filas de la tabla se agregarán aquí al cargar la página -->
                 </tbody>
             </table>
         </div>
@@ -70,30 +149,28 @@
 </div>
 
 <script>
-    // Función para agregar un nuevo lote a la tabla
-    document.getElementById("formLote").addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        // Obtener valores del formulario
-        let fechaLote = document.getElementById("fechaLote").value;
-        let fechaCaducidad = document.getElementById("fechaCaducidad").value;
-        let numeroLote = document.getElementById("numeroLote").value;
-        let producto = document.getElementById("producto").value;
-
-        // Crear una nueva fila en la tabla
-        let tabla = document.getElementById("tablaLotes");
-        let fila = tabla.insertRow();
-
-        // Insertar celdas en la fila
-        fila.insertCell(0).textContent = fechaLote;
-        fila.insertCell(1).textContent = fechaCaducidad;
-        fila.insertCell(2).textContent = numeroLote;
-        fila.insertCell(3).textContent = producto;
-
-        // Limpiar el formulario después de agregar el lote
-        document.getElementById("formLote").reset();
-    });
+    // Función para eliminar una fila con confirmación SweetAlert
+    function eliminarFila(fila) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esta acción!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fila.remove();
+                Swal.fire(
+                    'Eliminado!',
+                    'El lote ha sido eliminado.',
+                    'success'
+                )
+            }
+        });
+    }
 </script>
-
 </body>
 </html>

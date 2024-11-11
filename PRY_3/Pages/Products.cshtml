@@ -54,7 +54,28 @@
         .form-control:focus {
             border-color: #eeaa0d;
             box-shadow: 0 0 0 0.2rem rgba(182, 145, 43, 0.25);
-        } 
+        }
+
+        .expandable-row {
+            display: none; /* Initially hidden */
+            transform: scaleY(0);
+            transform-origin: top;
+            height: 0;
+            transition: transform 0.3s ease, height 0.3s ease;
+            overflow: hidden;
+        }
+        .expandable-row.open {
+            display: table-row; /* Show the row when it's expanded */
+            transform: scaleY(1);
+            height: auto;
+        }
+        .form-control:focus {
+            border-color: #eeaa0d;
+            box-shadow: 0 0 0 0.2rem rgba(182, 145, 43, 0.25);
+        }
+        .btn-modify {
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -74,6 +95,9 @@
             <input type="range" id="precioMax" style="accent-color: #eeaa0d" min="0" max="10000" step="100" value="10000" oninput="mostrarPrecio('precioMax')">
             <span id="precioMaxValor">₡10000</span>
         </div>
+        <button type="button" class="btn btn-primary ms-2" onclick="abrirModalAgregarProducto()">
+            <i class="fas fa-plus"></i> Agregar Producto
+        </button>
     </div>
 
     <!-- Contenedor de opciones de filtro -->
@@ -116,30 +140,99 @@
 
 </div>
 
+<!-- Modal para agregar producto -->
+<div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="modalAgregarProductoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarProductoLabel">Agregar Nuevo Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAgregarProducto">
+                    <div class="mb-3">
+                        <label for="nombreProducto" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombreProducto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="marcaProducto" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marcaProducto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precioProducto" class="form-label">Precio Unitario</label>
+                        <input type="number" class="form-control" id="precioProducto" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcionProducto" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="descripcionProducto" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar Producto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
     // JSON de productos
     const productos = [
-            { "nombre": "Arroz", "marca": "Tío Pelón", "precio": 1000, "cantidad": 50, "descripcion": "Arroz blanco de primera calidad" },
-            { "nombre": "Frijoles", "marca": "Don Pedro", "precio": 1500, "cantidad": 30, "descripcion": "Frijoles negros enteros" },
-            { "nombre": "Café", "marca": "1820", "precio": 2500, "cantidad": 40, "descripcion": "Café molido tradicional costarricense" },
-            { "nombre": "Leche", "marca": "Dos Pinos", "precio": 700, "cantidad": 20, "descripcion": "Leche entera en caja" },
-            { "nombre": "Azúcar", "marca": "El Ciebo", "precio": 800, "cantidad": 60, "descripcion": "Azúcar refinada" },
-            { "nombre": "Aceite", "marca": "La Favorita", "precio": 2000, "cantidad": 25, "descripcion": "Aceite vegetal" },
-            { "nombre": "Harina", "marca": "Fina", "precio": 1200, "cantidad": 45, "descripcion": "Harina de trigo" },
-            { "nombre": "Galletas", "marca": "Pozuelo", "precio": 600, "cantidad": 80, "descripcion": "Galletas de chocolate" },
-            { "nombre": "Papel Higiénico", "marca": "Scott", "precio": 3000, "cantidad": 50, "descripcion": "Papel higiénico doble hoja" },
-            { "nombre": "Jugo", "marca": "Del Valle", "precio": 500, "cantidad": 40, "descripcion": "Jugo de naranja" },
-            { "nombre": "Salsa de Tomate", "marca": "Lizano", "precio": 900, "cantidad": 30, "descripcion": "Salsa de tomate tradicional" },
-            { "nombre": "Queso", "marca": "Monteverde", "precio": 1500, "cantidad": 25, "descripcion": "Queso semiduro" },
-            { "nombre": "Mantequilla", "marca": "Dos Pinos", "precio": 1200, "cantidad": 20, "descripcion": "Mantequilla sin sal" },
-            { "nombre": "Atún", "marca": "Sardimar", "precio": 800, "cantidad": 60, "descripcion": "Atún en aceite" },
-            { "nombre": "Sardinas", "marca": "Albo", "precio": 700, "cantidad": 50, "descripcion": "Sardinas en tomate" },
-            { "nombre": "Chocolate", "marca": "Tosh", "precio": 1300, "cantidad": 55, "descripcion": "Chocolate oscuro sin azúcar" },
-            { "nombre": "Pan", "marca": "Bimbo", "precio": 600, "cantidad": 35, "descripcion": "Pan blanco tajado" },
-            { "nombre": "Gaseosa", "marca": "Coca-Cola", "precio": 1000, "cantidad": 70, "descripcion": "Gaseosa de cola" },
-            { "nombre": "Agua Embotellada", "marca": "Alpina", "precio": 500, "cantidad": 100, "descripcion": "Agua pura en botella" },
-            { "nombre": "Refresco en polvo", "marca": "Tang", "precio": 250, "cantidad": 150, "descripcion": "Refresco en polvo de frutas" }
-        ];
+        { "nombre": "Arroz", "marca": "Tío Pelón", "precio": 1000, "cantidad": 50, "descripcion": "Arroz blanco de primera calidad" },
+        { "nombre": "Frijoles", "marca": "Don Pedro", "precio": 1500, "cantidad": 30, "descripcion": "Frijoles negros enteros" },
+        { "nombre": "Café", "marca": "1820", "precio": 2500, "cantidad": 40, "descripcion": "Café molido tradicional costarricense" },
+        { "nombre": "Leche", "marca": "Dos Pinos", "precio": 700, "cantidad": 20, "descripcion": "Leche entera en caja" },
+        { "nombre": "Azúcar", "marca": "El Ciebo", "precio": 800, "cantidad": 60, "descripcion": "Azúcar refinada" },
+        { "nombre": "Aceite", "marca": "La Favorita", "precio": 2000, "cantidad": 25, "descripcion": "Aceite vegetal" },
+        { "nombre": "Harina", "marca": "Fina", "precio": 1200, "cantidad": 45, "descripcion": "Harina de trigo" },
+        { "nombre": "Galletas", "marca": "Pozuelo", "precio": 600, "cantidad": 80, "descripcion": "Galletas de chocolate" },
+        { "nombre": "Papel Higiénico", "marca": "Scott", "precio": 3000, "cantidad": 50, "descripcion": "Papel higiénico doble hoja" },
+        { "nombre": "Jugo", "marca": "Del Valle", "precio": 500, "cantidad": 40, "descripcion": "Jugo de naranja" },
+        { "nombre": "Salsa de Tomate", "marca": "Lizano", "precio": 900, "cantidad": 30, "descripcion": "Salsa de tomate tradicional" },
+        { "nombre": "Queso", "marca": "Monteverde", "precio": 1500, "cantidad": 25, "descripcion": "Queso semiduro" },
+        { "nombre": "Mantequilla", "marca": "Dos Pinos", "precio": 1200, "cantidad": 20, "descripcion": "Mantequilla sin sal" },
+        { "nombre": "Atún", "marca": "Sardimar", "precio": 800, "cantidad": 60, "descripcion": "Atún en aceite" },
+        { "nombre": "Sardinas", "marca": "Albo", "precio": 700, "cantidad": 50, "descripcion": "Sardinas en tomate" },
+        { "nombre": "Chocolate", "marca": "Tosh", "precio": 1300, "cantidad": 55, "descripcion": "Chocolate oscuro sin azúcar" },
+        { "nombre": "Pan", "marca": "Bimbo", "precio": 600, "cantidad": 35, "descripcion": "Pan blanco tajado" },
+        { "nombre": "Gaseosa", "marca": "Coca-Cola", "precio": 1000, "cantidad": 70, "descripcion": "Gaseosa de cola" },
+        { "nombre": "Agua Embotellada", "marca": "Alpina", "precio": 500, "cantidad": 100, "descripcion": "Agua pura en botella" },
+        { "nombre": "Refresco en polvo", "marca": "Tang", "precio": 250, "cantidad": 150, "descripcion": "Refresco en polvo de frutas" }
+    ];
+        
+        // Función para abrir el modal de agregar producto
+    function abrirModalAgregarProducto() {
+        const modal = new bootstrap.Modal(document.getElementById('modalAgregarProducto'));
+        modal.show();
+    }
+
+    document.getElementById('formAgregarProducto').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const nombre = document.getElementById('nombreProducto').value;
+        const marca = document.getElementById('marcaProducto').value;
+        const precio = parseFloat(document.getElementById('precioProducto').value);
+        const cantidad = 0;
+        const descripcion = document.getElementById('descripcionProducto').value;
+
+        // Validación de los campos
+        if (!nombre || !marca || !precio || !descripcion) {
+            alert("Por favor, complete todos los campos.");
+            return;
+        }
+
+        // Agregar el producto al array
+        productos.push({ nombre, marca, precio, cantidad, descripcion });
+
+        // Recargar la tabla
+        cargarProductos();
+        Swal.fire({
+            icon: 'success',
+            title: 'Producto agregado',
+            text: 'El producto se ha agregado correctamente.',
+        });
+        // Cerrar el modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('modalAgregarProducto'));
+        modal.hide();
+    });
 
     function cargarProductos() {
         mostrarProductos(productos);
@@ -192,24 +285,80 @@
 
 
     function mostrarProductos(productos) {
-        const tabla = document.getElementById('productosTabla');
-        tabla.innerHTML = '';
-        productos.forEach(producto => {
-            const fila = `<tr>
+        const tabla = document.getElementById("productosTabla");
+        tabla.innerHTML = "";
+        productos.forEach((producto, index) => {
+            const row = document.createElement("tr");
+            row.classList.add("producto-row");
+            row.innerHTML = `
                 <td>${producto.nombre}</td>
                 <td>${producto.marca}</td>
                 <td>₡${producto.precio}</td>
                 <td>${producto.cantidad}</td>
                 <td>${producto.descripcion}</td>
                 <td>
-                    <button class="btn btn-success btn-sm"><i class="fas fa-plus"></i></button>
-                    <button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                    <button class="btn btn-warning btn-sm btn-modify" onclick="expandRow(${index})">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </td>
-            </tr>`;
-            tabla.innerHTML += fila;
+            `;
+            tabla.appendChild(row);
+
+            const expandableRow = document.createElement("tr");
+            expandableRow.classList.add("expandable-row");
+            expandableRow.setAttribute("id", `expandable-${index}`);
+            expandableRow.innerHTML = `
+                <td colspan="6">
+                    <div>
+                        <label>Nombre:</label>
+                        <input type="text" value="${producto.nombre}" class="form-control" id="nombre-${index}">
+                        <label>Descripción:</label>
+                        <input type="text" value="${producto.descripcion}" class="form-control" id="descripcion-${index}">
+                        <label>Nuevo precio:</label>
+                        <input type="number" value="${producto.precio}" class="form-control" id="precio-${index}">
+                        <button class="btn btn-success btn-sm" onclick="guardarModificacion(${index})">
+                            <i class="fas fa-save"></i> Guardar cambios
+                        </button>
+                    </div>
+                </td>
+            `;
+            tabla.appendChild(expandableRow);
         });
     }
+
+    function expandRow(index) {
+        const expandableRow = document.getElementById(`expandable-${index}`);
+        const isExpanded = expandableRow.classList.contains("open");
+
+        // Collapse all rows first
+        const allExpandableRows = document.querySelectorAll('.expandable-row');
+        allExpandableRows.forEach(row => row.classList.remove("open"));
+
+        if (!isExpanded) {
+            expandableRow.classList.add("open");
+        }
+    }
+
+    function eliminarProducto(index) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡Este producto será eliminado!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                productos.splice(index, 1);
+                cargarProductos();
+                Swal.fire('Eliminado', 'El producto ha sido eliminado.', 'success');
+            }
+        });
+    }
+
 
     function quitarFiltros() {
         document.getElementById("busqueda").value = '';
@@ -228,7 +377,38 @@
         filtrarProductos();
     }
 
+    function guardarModificacion(index) {
+        // Obtener los nuevos valores de los campos de entrada
+        const nuevoNombre = document.getElementById(`nombre-${index}`).value;
+        const nuevaDescripcion = document.getElementById(`descripcion-${index}`).value;
+        const nuevoPrecio = parseFloat(document.getElementById(`precio-${index}`).value);
+
+        // Verificar si los datos son válidos
+        if (nuevoNombre.trim() === '' || nuevaDescripcion.trim() === '' || isNaN(nuevoPrecio) || nuevoPrecio <= 0) {
+            Swal.fire('Error', 'Por favor, complete todos los campos correctamente.', 'error');
+            return;
+        }
+
+        // Actualizar el producto en el array
+        productos[index].nombre = nuevoNombre;
+        productos[index].descripcion = nuevaDescripcion;
+        productos[index].precio = nuevoPrecio;
+
+        // Recargar los productos en la tabla
+        cargarProductos();
+
+        // Cerrar la fila expandible
+        const expandableRow = document.getElementById(`expandable-${index}`);
+        expandableRow.classList.remove("open");
+
+        // Mostrar mensaje de éxito
+        Swal.fire('¡Listo!', 'El producto ha sido actualizado correctamente.', 'success');
+    }
+
+
     cargarProductos();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
