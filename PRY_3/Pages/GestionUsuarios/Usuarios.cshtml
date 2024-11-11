@@ -16,31 +16,31 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Color de fondo verde claro */
+            background-color: #ffffff; 
             margin: 0;
             padding: 20px;
         }
 
         .content {
             border-radius: 8px;
-            margin: auto; /* Centrar el contenido */
+            margin: auto;
         }
 
 
         .btn {
-            padding: 15px 20px; /* Aumentar el padding */
+            padding: 15px 20px; /
             border: none;
-            border-radius: 8px; /* Aumentar el radio de borde */
+            border-radius: 8px; 
             cursor: pointer;
             text-decoration: none;
             color: white;
-            font-size: 8px; /* Aumentar el tamaño de la fuente */
+            font-size: 8px; 
             margin-right: 10px;
             transition: background-color 0.3s;
         }
 
         .btn-primary {
-            background-color: #4caf50; /* Verde */
+            background-color: #4caf50; 
         }
 
         .btn-warning {
@@ -61,10 +61,10 @@
         }
 
         .search-form input[type="text"] {
-            padding: 12px; /* Aumentar el padding */
+            padding: 12px; 
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px; /* Aumentar el tamaño de la fuente */
+            font-size: 16px; 
         }
 
        
@@ -72,8 +72,8 @@
         .alert {
             padding: 20px; 
             margin-top: 20px;
-            border-radius: 8px; /* Aumentar el radio de borde */
-            font-size: 18px; /* Aumentar el tamaño de la fuente */
+            border-radius: 8px; 
+            font-size: 18px; 
         }
 
         .alert-success {
@@ -87,8 +87,8 @@
         }
 
         .delete-button, .modify-button {
-            width: 50px; /* Aumentar el ancho */
-            height: 50px; /* Aumentar la altura */
+            width: 50px; 
+            height: 50px; 
             border-radius: 50%;
             border: none;
             font-weight: 600;
@@ -102,21 +102,21 @@
         }
 
         .delete-button {
-            background-color: #dc3545; /* Rojo */
+            background-color: #dc3545;
         }
 
         .modify-button {
-            background-color: #ffc107; /* Amarillo */
+            background-color: #ffc107; 
         }
 
         .delete-button:hover, .modify-button:hover {
-            width: 120px; /* Aumentar el ancho al pasar el mouse */
+            width: 120px; 
             border-radius: 50px;
             background-color: #ff5722; 
         }
 
         .delete-svgIcon, .modify-svgIcon {
-            width: 20px; /* Aumentar el tamaño de los íconos */
+            width: 20px; 
             transition-duration: 0.3s;
         }
 
@@ -125,7 +125,7 @@
         }
 
         .delete-button:hover .delete-svgIcon, .modify-button:hover .modify-svgIcon {
-            width: 25px; /* Aumentar el tamaño de los íconos al pasar el mouse */
+            width: 25px; 
             transform: rotate(360deg);
         }
 
@@ -156,7 +156,7 @@
         }
 
         .input2 {
-            height: 40px; /* Aumentar la altura */
+            height: 40px; 
             line-height: 28px;
             padding: 0 1rem;
             width: 100lh;
@@ -195,35 +195,35 @@
         /* Estilos del formulario */
         .custom-form {
             background-color: #ffffff;
-            padding: 30px; /* Aumentar el padding */
-            border-radius: 8px; /* Aumentar el radio de borde */
+            padding: 30px; 
+            border-radius: 8px; 
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             margin: 10px 0;
         }
 
         .custom-label {
             display: block;
-            margin-bottom: 10px; /* Aumentar el margen */
+            margin-bottom: 10px; 
             font-weight: bold;
             color: #333;
-            font-size: 16px; /* Tamaño de la fuente */
+            font-size: 16px; 
         }
 
         /* Estilos de entrada */
         .custom-input-text,
         .custom-input-email {
-            width: calc(100% - 20px); /* Ajuste del ancho */
-            padding: 15px; /* Aumentar el padding */
+            width: calc(100% - 20px); 
+            padding: 15px; 
             margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 16px; /* Aumentar el tamaño de la fuente */
+            font-size: 16px; 
             transition: border-color 0.3s;
         }
 
         .custom-input-text:focus,
         .custom-input-email:focus {
-            border-color: #007bff; /* Cambio de color en foco */
+            border-color: #007bff;
             outline: none;
         }
 
@@ -231,10 +231,10 @@
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 15px 20px; /* Aumentar el padding */
+            padding: 15px 20px; 
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px; /* Aumentar el tamaño de la fuente */
+            font-size: 16px; 
             transition: background-color 0.3s;
         }
 
@@ -375,18 +375,16 @@
                 color: #fff;
             }
 
-            /* Solo redondear las esquinas exteriores de la tabla */
             .table {
                 font-size: 13px;
-                border-radius: 10px;  /* Redondeo solo en las esquinas exteriores */
-                border: 1px solid #dee2e6;  /* Mantener el borde de la tabla */
-                overflow: hidden;  /* Asegura que las celdas no se salgan de las esquinas redondeadas */
+                border-radius: 10px;  
+                border: 1px solid #dee2e6;  
+                overflow: hidden;  
             }
             tbody {
                 background-color: #fff;
             }
 
-            /* No redondear las celdas */
             .table th, .table td {
                 border-radius: 0;
             }
@@ -640,7 +638,6 @@
 
         document.getElementById('formAgregarUsuario').addEventListener('submit', function (event) {
             event.preventDefault();
-            // Lógica para agregar el usuario a la base de datos (esto puede variar según tu lógica de backend)
             Swal.fire('¡Usuario agregado!', '', 'success');
         });
 
