@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\coleg\OneDrive\Escritorio\PRY_3_Prototipo\PRY_3
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Descuento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVzY3VlbnRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -26,12 +30,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmFjdHVyYWNpb25cZmFjdHVyYWNpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/GestionUsuarios/AgregarU.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblVzdWFyaW9zXEFncmVnYXJVLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/GestionUsuarios/Usuarios.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcR2VzdGlvblVzdWFyaW9zXFVzdWFyaW9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Lotes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG90ZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/coleg/OneDrive/Escritorio/PRY_3_Prototipo/PRY_3/Pages/Men/Menu.cshtml]
