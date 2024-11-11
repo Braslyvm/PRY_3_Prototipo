@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventana de Facturación de Productos</title>
@@ -110,22 +112,23 @@
 <div class="container">
     <div id="lucky" style="text-align: center;">LUCKY</div>
     <h1>Pago de Servicios</h1>
-
     <form method="post">
-        <div class="form-group">
-            <label for="servicio">Servicio:</label>
-            <select id="servicio" name="servicio" required>
-                <option value=""></option>
-                <option value="agua">Agua</option>
-                <option value="luz">Luz</option>
-                <option value="recibos">Recibos</option>
-                <option value="recargas">Recargas</option>
-            </select>
+        <div>
+            <button type="button" class="servicio-boton" onclick="seleccionarServicio('agua')">
+       <i class="fas fa-tint fa-2x"></i> 
+</button>
+
+            <button type="button" class="servicio-boton" onclick="seleccionarServicio('luz')">
+                    <i class="fas fa-bolt fa-2x"></i>
+            </button>
+            <button type="button" class="servicio-boton" onclick="seleccionarServicio('recibos')">
+                     <i class="fas fa-file-invoice fa-2x"></i> 
+            </button>
+            <button type="button" class="servicio-boton" onclick="seleccionarServicio('recargas')">
+                  <i class="fas fa-mobile-alt fa-2x"></i>  </button>
         </div>
 
-        <div id="formularioEspecifico">
-          
-        </div>
+        <div id="formularioEspecifico"></div>
 
         <div class="button-container">
             <button type="button" onclick="realizarPago()">Pagar</button>
@@ -134,33 +137,39 @@
     </form>
 </div>
 
+<select id="servicio" style="display:none">
+    <option value="agua">Agua</option>
+    <option value="luz">Luz</option>
+    <option value="recibos">Recibos</option>
+    <option value="recargas">Recargas</option>
+</select>
+
 @section Scripts {
     <script>
-        document.getElementById('servicio').addEventListener('change', function() {
-            const servicioSeleccionado = this.value;
+        function seleccionarServicio(servicio) {
             const formularioEspecifico = document.getElementById('formularioEspecifico');
+            const servicioSelect = document.getElementById('servicio');
 
             // Limpiar el formulario específico
             formularioEspecifico.innerHTML = '';
+            servicioSelect.value = servicio;
 
             // Agregar campos según el servicio seleccionado
-            if (servicioSeleccionado === 'agua') {
+            if (servicio === 'agua') {
                 formularioEspecifico.innerHTML += '<div class="form-group"><label for="numeroCuenta">Número de Nis:</label><input type="text" id="numeroCuenta" name="numeroCuenta" required /></div>';
-            } else if (servicioSeleccionado === 'luz') {
+            } else if (servicio === 'luz') {
                 formularioEspecifico.innerHTML += '<div class="form-group"><label for="codigoCliente">Código de Nise:</label><input type="text" id="codigoCliente" name="codigoCliente" required /></div>';
-            } else if (servicioSeleccionado === 'recibos') {
+            } else if (servicio === 'recibos') {
                 formularioEspecifico.innerHTML += '<div class="form-group"><label for="numeroRecibo">Número de Recibo:</label><input type="text" id="numeroRecibo" name="numeroRecibo" required /></div>';
-            } else if (servicioSeleccionado === 'recargas') {
+            } else if (servicio === 'recargas') {
                 formularioEspecifico.innerHTML += '<div class="form-group"><label for="numeroTelefono">Número de Teléfono:</label><input type="text" id="numeroTelefono" name="numeroTelefono" required /></div>';
             }
-        });
+        }
 
         function calcularTotal() {
-            
             const servicioSeleccionado = document.getElementById('servicio').value;
             let total = 0;
 
-         
             switch (servicioSeleccionado) {
                 case 'agua':
                     total = 20000; 
