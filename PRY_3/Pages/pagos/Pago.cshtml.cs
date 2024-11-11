@@ -27,6 +27,7 @@ public class PagoModel : PageModel
     public void OnGet(decimal montoTotal)
     {
         MontoTotal = montoTotal;
+        
     }
 
     public IActionResult OnPost()

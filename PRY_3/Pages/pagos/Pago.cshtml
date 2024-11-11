@@ -134,6 +134,11 @@
         #confirmacionPago {
             display: none;
             margin-top: 20px;
+             border: 1px solid #ccc; 
+    padding: 15px;          
+    border-radius: 5px;     
+    max-width: 400px;       
+    margin: 20px auto;     
         }
     </style>
 </head>
@@ -142,12 +147,14 @@
 <div class="container">
       <div id="lucky" style="text-align: center;">LUCKY</div>
 
-    <h2>Gestión de Pago</h2>
-    <form method="post">
-        <div>
-            <label>Monto Total a Pagar: ₡</label>
-            <span>@Model.MontoTotal</span>
-        </div>
+    
+    <form method="post"> 
+      <div id="monto-total" style="display: none;">
+        <h2>Gestión de Pago</h2>
+    <label>Monto Total a Pagar: ₡</label>
+    <span>@Model.MontoTotal</span>
+</div>
+
 
         <div id="metodoPagoContainer">
             <label>Método de Pago:</label>
@@ -183,14 +190,14 @@
             <button type="button" onclick="realizarPago('efectivo')">Confirmar Pago</button>
             <button type="button" onclick="cambiarMetodo()">Volver</button>
         </div>
-
-        <div id="confirmacionPago">
-            <h3>Pago Confirmado</h3>
-            <p>Total de la Factura: ₡<span id="totalFactura">@Model.MontoTotal</span></p>
-            <p>Total cambio: ₡<span id="cambioTexto">@Model.Cambio</span></p>
-            <button type="button" onclick="volver()">Volver</button>
-        </div>
-
+    <div id="confirmacionPago">
+    <h3>Pago Confirmado</h3>
+    <p>Total de la Factura: ₡<span id="totalFactura">@Model.MontoTotal</span></p>
+    <p>IVA: ₡<span id="ivaTexto"></span></p> <!-- Aquí se mostrará el IVA calculado -->
+    <p>Total con IVA: ₡<span id="totalConIva"></span></p> <!-- Aquí se mostrará el total con IVA -->
+    <p>Total cambio: ₡<span id="cambioTexto">@Model.Cambio</span></p>
+    <button onclick="volver()">Volver</button>
+</div>
         <div id="mensajeExito">Pago exitoso. ¡Gracias!</div>
         <div id="mensajeError">El monto entregado no es suficiente. Intenta con otro método de pago.</div>
     </form>
@@ -203,28 +210,40 @@
         document.getElementById("pagoEfectivo").style.display = metodo === 'efectivo' ? 'block' : 'none';
     }
 
-    function realizarPago(metodo) {
-        if (metodo === 'efectivo') {
-            const montoEntregado = parseFloat(document.getElementById("montoEntregado").value);
-            const montoTotal = parseFloat('@Model.MontoTotal');
+function realizarPago(metodo) {
+    const montoTotal = parseFloat('@Model.MontoTotal');
+    const tasaIva = 0.13; // 13% de IVA (ajústalo si es diferente)
+    const iva = montoTotal * tasaIva;
+    const totalConIva = montoTotal + iva;
 
-            if (montoEntregado < montoTotal) {
-                document.getElementById("mensajeError").style.display = "block"; 
-                return;
-            } else {
-                document.getElementById("cambioTexto").textContent = (montoEntregado - montoTotal).toFixed(2);
-            }
+    if (metodo === 'efectivo') {
+        const montoEntregado = parseFloat(document.getElementById("montoEntregado").value);
+
+        if (montoEntregado < montoTotal) {
+            document.getElementById("mensajeError").style.display = "block"; 
+            return;
+        } else {
+            document.getElementById("cambioTexto").textContent = (montoEntregado - totalConIva).toFixed(2);
         }
-
-        document.getElementById("mensajeError").style.display = "none";
-        document.getElementById("confirmacionPago").style.display = "block";
-        document.getElementById("mensajeExito").style.display = "block";
-        document.getElementById("metodoPagoContainer").style.display = "none";
-        document.getElementById("pagoTarjeta").style.display = "none";
-        document.getElementById("pagoEfectivo").style.display = "none";
-        document.getElementById("confirmacionPago").style.display = "block";
-        document.getElementById("mensajeExito").style.display = "block";
     }
+
+    document.getElementById("mensajeError").style.display = "none";
+    document.getElementById("confirmacionPago").style.display = "block";
+    document.getElementById("mensajeExito").style.display = "block";
+    document.getElementById("metodoPagoContainer").style.display = "none";
+    document.getElementById("pagoTarjeta").style.display = "none";
+    document.getElementById("pagoEfectivo").style.display = "none";
+    document.getElementById("monto-total").style.display = "none";
+
+
+    // Mostrar el IVA y el total con IVA en la factura
+    document.getElementById("ivaTexto").textContent = iva.toFixed(2); // Mostrar el IVA
+    document.getElementById("totalConIva").textContent = totalConIva.toFixed(2); // Mostrar el total con IVA
+}
+
+
+
+
 
     function cambiarMetodo() {
         document.getElementById("metodoPagoContainer").style.display = "block";

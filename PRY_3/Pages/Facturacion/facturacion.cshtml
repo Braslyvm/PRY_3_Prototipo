@@ -314,8 +314,17 @@ li button:last-child:hover {
             const producto = productos.find(p => p.nombre.toLowerCase() === nombre.toLowerCase() || p.codigo === nombre);
 
             if (!producto) {
-                alert('Producto no encontrado');
-                document.getElementById('nombre').value = '';
+                 Swal.fire({
+        title: 'Atención',
+        text: 'Producto no encontrado',
+        icon: 'info',
+        timer: 2000, 
+        timerProgressBar: true 
+    });
+    
+
+
+                //document.getElementById('nombre').value = '';
                 return;
             }
 
@@ -330,15 +339,6 @@ li button:last-child:hover {
             document.getElementById('nombre').value = '';
         }
 
-        function eliminarProducto(nombre) {
-            const index = factura.findIndex(p => p.nombre.toLowerCase() === nombre.toLowerCase());
-            if (index !== -1) {
-                factura.splice(index, 1);
-                actualizarLista();
-            } else {
-                alert('Producto no encontrado en la factura');
-            }
-        }
 
         function modificarCantidad(nombre, cantidad) {
             const producto = factura.find(p => p.nombre.toLowerCase() === nombre.toLowerCase());
@@ -352,6 +352,8 @@ li button:last-child:hover {
             } else {
                 alert('Producto no encontrado en la factura');
             }
+            
+  
         }
 
         function realizarPago() {
@@ -359,6 +361,18 @@ li button:last-child:hover {
         }
 
         function finalizarFactura() {
+         
+          if (factura.length === 0) {
+            
+            Swal.fire(
+                'Atención',
+                'No hay productos en la factura',
+                'info'
+            );
+            return; // Termina la ejecución si no hay productos
+        }
+         
+    
             const ticketContent = document.getElementById('ticketContent');
             ticketContent.innerHTML = factura.map(producto => `${producto.nombre} - ₡${producto.precio} x ${producto.cantidad}`).join('<br>');
             
@@ -393,7 +407,13 @@ li button:last-child:hover {
                         if (producto.cantidad > 1) {
                             producto.cantidad -= 1;
                             actualizarLista();
-                        }
+                        }else {
+          producto.cantidad = 0;
+           actualizarLista(); 
+        eliminarProducto(producto.nombre);
+             actualizarLista();  
+    }
+                        
                     };
 
                     const inputCantidad = document.createElement('input');
@@ -427,17 +447,55 @@ li button:last-child:hover {
                     eliminarBtn.textContent = 'Eliminar';
                     eliminarBtn.onclick = () => eliminarProducto(producto.nombre);
                     li.appendChild(eliminarBtn);
+             
 
                     lista.appendChild(li);
-                });
-            }
 
+              
+                });
+              
+            }
+   
             document.getElementById('total').innerText = `Total: ₡${calcularTotal().toFixed(2)}`;
         }
 
         function calcularTotal() {
             return factura.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
+                actualizarLista();
         }
+        function eliminarProducto(nombre) {
+   const index = factura.findIndex(p => p.nombre.toLowerCase() === nombre.toLowerCase());
+   if (index !== -1) {
+       factura[index].cantidad = 0; 
+       actualizarLista();  
+       factura.splice(index, 1);
+       actualizarLista();  
+   } else {
+       alert('Producto no encontrado en la factura');
+   }
+}
+function confirmarAccion() {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',  
+        cancelButtonColor: '#d33',      
+        confirmButtonText: 'Sí, continuar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+           window.location.href='/Facturacion/facturacion'
+            Swal.fire(
+                '¡Hecho!',
+                'La acción se ha completado exitosamente.',
+                'success'
+            );
+        }
+    });
+}
+
     </script>
 
     <div class="input-button-container2">
@@ -445,7 +503,7 @@ li button:last-child:hover {
             <span class="default-btn">Finalizar</span>
             <span class="hover-btn">Finalizar</span>
         </button>
-        <button class="default-btn" onclick="window.location.href='/Facturacion/facturacion'">
+        <button class="default-btn" onclick="confirmarAccion()">
             <span class="default-btn">Cancelar</span>
             <span class="hover-btn">Cancelar</span>
         </button>
