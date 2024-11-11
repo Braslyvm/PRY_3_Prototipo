@@ -327,7 +327,7 @@
                     <li>
                         <a href="#" onclick="changeContent('reportes')">
                             <i class="fa-solid fa-chart-pie fa-xs"></i>
-                            <span class="sup-item">Reporte de Inicio Sesión</span>
+                            <span class="sup-item">Reporte de Logins</span>
                         </a>
                     </li>
                     <li>
@@ -371,11 +371,50 @@
         </ul>
     </nav>
 
+
+    <script>
+        function updateDateTime() {
+            const currentDate = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById("currentDateTime").textContent = currentDate.toLocaleDateString("es-ES", options);
+        }
+        setInterval(updateDateTime, 1000); // Actualiza cada segundo
+    </script>
+
+    <style>
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh; /* Opcional, se ajusta al alto completo de la pantalla */
+}
+
+.main-content h2 {
+    margin-top: 20px;
+}
+
+.main-content p {
+    margin-top: 10px;
+}
+
+
+        #currentDateTime {
+            font-weight: bold;
+            color: #6c757d;
+        }
+    </style>
+
     <div class="main-content" id="mainContent">
-        
-        <h2>Bienvenido al Menú</h2>
-        <p>Seleccione una opción del menú lateral para comenzar.</p>
+        <div class="welcome-container">
+            <img src="@Url.Content("~/img/logo.png")" alt="" style="max-width: 15%;" class="logo">
+            <h2>Bienvenido al Menú</h2>
+            <p>Seleccione una opción del menú lateral para comenzar.</p>
+            <p><strong>Fecha y hora actual:</strong> <span id="currentDateTime"></span></p>
+        </div>
     </div>
+
 
     <div class="language-toggle">
         <i class="fa fa-language" onclick="toggleLanguageOptions()"></i>
