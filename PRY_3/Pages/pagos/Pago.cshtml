@@ -165,18 +165,6 @@
 
         <div id="pagoTarjeta" style="display: none;">
             <h3>Pago con Tarjeta</h3>
-            <div class="form-group">
-                <label for="numeroTarjeta">Número de Tarjeta:</label>
-                <input type="text" id="numeroTarjeta" asp-for="NumeroTarjeta" maxlength="16" required />
-            </div>
-            <div class="form-group">
-                <label for="fechaExpiracion">Fecha de Expiración:</label>
-                <input type="month" id="fechaExpiracion" asp-for="FechaExpiracion" required />
-            </div>
-            <div class="form-group">
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" asp-for="CVV" maxlength="3" required />
-            </div>
             <button type="button" onclick="realizarPago('tarjeta')">Confirmar Pago </button>
             <button type="button" onclick="cambiarMetodo()">Volver</button>
         </div>
@@ -193,9 +181,12 @@
     <div id="confirmacionPago">
     <h3>Pago Confirmado</h3>
     <p>Total de la Factura: ₡<span id="totalFactura">@Model.MontoTotal</span></p>
-    <p>IVA: ₡<span id="ivaTexto"></span></p> <!-- Aquí se mostrará el IVA calculado -->
-    <p>Total con IVA: ₡<span id="totalConIva"></span></p> <!-- Aquí se mostrará el total con IVA -->
+    <p>IVA: ₡<span id="ivaTexto"></span></p> 
+    <p>Total con IVA: ₡<span id="totalConIva"></span></p> 
     <p>Total cambio: ₡<span id="cambioTexto">@Model.Cambio</span></p>
+    <p>Descuento: 0%</p>
+    <p>Total cambio: ₡<span id="cambioTexto">@Model.Cambio</span></p>
+
     <button onclick="volver()">Volver</button>
 </div>
         <div id="mensajeExito">Pago exitoso. ¡Gracias!</div>
@@ -256,6 +247,12 @@ function realizarPago(metodo) {
     function volver() {
           window.history.back();
     }
+    document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); 
+    }
+});
+
 </script>
 
 </body>
